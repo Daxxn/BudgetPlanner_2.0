@@ -1,0 +1,9 @@
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\bin\Debug\StateControl.dll
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\bin\Debug\StateControl.pdb
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\bin\Debug\BudgetModels.dll
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\bin\Debug\BudgetModels.pdb
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\obj\Debug\StateControl.csprojAssemblyReference.cache
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\obj\Debug\StateControl.csproj.CoreCompileInputs.cache
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\obj\Debug\StateControl.csproj.CopyComplete
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\obj\Debug\StateControl.dll
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\obj\Debug\StateControl.pdb

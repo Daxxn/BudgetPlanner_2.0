@@ -1,0 +1,5 @@
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetModels\bin\Debug\BudgetModels.dll
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetModels\bin\Debug\BudgetModels.pdb
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetModels\obj\Debug\BudgetModels.csproj.CoreCompileInputs.cache
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetModels\obj\Debug\BudgetModels.dll
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetModels\obj\Debug\BudgetModels.pdb
