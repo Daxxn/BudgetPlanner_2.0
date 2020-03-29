@@ -18,3 +18,7 @@ C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\bin\Debug\BudgetModels.pdb
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\bin\Debug\StateControl.pdb
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\BudgetPlanner_UI.csproj.CopyComplete
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\Views\BudgetView.g.cs
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\Views\PaystubView.g.cs
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\Views\BudgetView.baml
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\Views\PaystubView.baml

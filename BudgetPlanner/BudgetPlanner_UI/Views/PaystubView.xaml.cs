@@ -12,22 +12,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BudgetPlanner_UI.Views
 {
     /// <summary>
-    /// Interaction logic for ShellView.xaml
+    /// Interaction logic for PaystubView.xaml
     /// </summary>
-    public partial class ShellView : Window, IView
+    public partial class PaystubView : UserControl, IView
     {
-        public ShellView( ShellViewModel vm )
+        public PaystubView( PaystubViewModel vm )
         {
             InitializeComponent();
             DataContext = vm;
-            //BudgetTab_CC.Content = UIFactory.BuildBudgetView(ShellViewModel.Instance.BudgetVM);
-            BudgetTab_CC.Content = UIFactory.BuildView<BudgetView, BudgetViewModel>(ShellViewModel.Instance.BudgetVM);
-            PaystubTab_CC.Content = UIFactory.BuildView<PaystubView, PaystubViewModel>(ShellViewModel.Instance.PaystubVM);
         }
     }
 }

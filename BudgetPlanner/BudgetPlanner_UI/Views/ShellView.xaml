@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetPlanner_UI.Views"
         mc:Ignorable="d"
-        Title="ShellView" Height="450" Width="800">
+        Title="Budget Planner" Height="450" Width="800">
     <Grid>
-        
-    </Grid>
+		<Grid.ColumnDefinitions>
+			<!--<ColumnDefinition Width="Auto"/>-->
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<Menu>
+			<MenuItem Header="File">
+				<MenuItem x:Name="OpenMenu" Header="Open"/>
+				<MenuItem x:Name="SaveMenu" Header="Save"/>
+				<MenuItem x:Name="SaveAsMenu" Header="Save As"/>
+			</MenuItem>
+		</Menu>
+		<TabControl TabStripPlacement="Top" Grid.Row="1">
+			<TabItem Header="Budget">
+				<ContentControl x:Name="BudgetTab_CC"/>
+			</TabItem>
+			<TabItem Header="Paystubs">
+				<ContentControl x:Name="PaystubTab_CC"/>
+			</TabItem>
+			<TabItem Header="Depts">
+				<ContentControl x:Name="DebtTab_CC"/>
+			</TabItem>
+		</TabControl>
+	</Grid>
 </Window>

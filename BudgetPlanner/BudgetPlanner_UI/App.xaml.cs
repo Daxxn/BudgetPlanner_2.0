@@ -15,14 +15,17 @@ namespace BudgetPlanner_UI
     /// </summary>
     public partial class App : Application
     {
-        public ShellViewModel Shell { get; set; }
-
         protected override void OnStartup( StartupEventArgs e )
         {
+            FactoryTesting();
             base.OnStartup(e);
-            Shell = UIFactory.BuildShellViewModel();
-            var shellView = new ShellView(Shell);
+            var shellView = new ShellView(ShellViewModel.Instance);
             shellView.Show();
+        }
+
+        private void FactoryTesting(  )
+        {
+            UIFactory.BuildViewModel<BudgetViewModel>();
         }
     }
 }

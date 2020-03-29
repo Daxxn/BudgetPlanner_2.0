@@ -1,5 +1,7 @@
-﻿using BudgetPlanner_UI.ViewModels;
+﻿using BudgetPlanner_UI.Interfaces;
+using BudgetPlanner_UI.ViewModels;
 using BudgetPlanner_UI.Views;
+using System.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +13,22 @@ namespace BudgetPlanner_UI
     public static class UIFactory
 	{
 		#region - Fields & Properties
-
+		
 		#endregion
 
 		#region - Methods
-		public static ShellView BuildShellView( ShellViewModel vm )
+		public static TView BuildView<TView, TViewModel>( TViewModel vm ) where TView : IView
 		{
-			return new ShellView(vm);
+			var viewType = typeof(TView);
+			var ctor = viewType.GetConstructor(new Type[] { typeof(TViewModel) });
+			return (TView)ctor.Invoke(new object[] { vm });
 		}
-
-		public static ShellViewModel BuildShellViewModel(  )
+		
+		public static TViewModel BuildViewModel<TViewModel>( ) where TViewModel : IViewModel
 		{
-			return new ShellViewModel();
+			var type = typeof(TViewModel);
+			var ctor = type.GetConstructor(Type.EmptyTypes);
+			return (TViewModel)ctor.Invoke(null);
 		}
 		#endregion
 

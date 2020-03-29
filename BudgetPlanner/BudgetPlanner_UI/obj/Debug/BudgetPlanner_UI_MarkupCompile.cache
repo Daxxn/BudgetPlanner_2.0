@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\App.xaml
-1-250345876
+3-234949810
 
-9312454998
+141360199423
 15-741986296
-Views\ShellView.xaml;
+Views\BudgetView.xaml;Views\PaystubView.xaml;Views\ShellView.xaml;
 
 False
 

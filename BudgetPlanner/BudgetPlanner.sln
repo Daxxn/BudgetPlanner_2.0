@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetModels", "BudgetModel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateControl", "StateControl\StateControl.csproj", "{BC47083F-0DD1-4E0C-883E-7DA15C245A97}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2146E462-3551-4BA6-98EC-EF3E15F59706}"
+	ProjectSection(SolutionItems) = preProject
+		Features_Bugs.txt = Features_Bugs.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
