@@ -41,14 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BudgetFactory.cs" />
+    <Compile Include="Models_V1\BudgetInterfaces\IBudget.cs" />
     <Compile Include="Models_V1\BudgetModels\BudgetBase.cs" />
     <Compile Include="Models_V1\BudgetModels\Expense.cs" />
+    <Compile Include="Models_V1\BudgetInterfaces\IExpense.cs" />
+    <Compile Include="Models_V1\BudgetInterfaces\IIncome.cs" />
+    <Compile Include="Models_V1\BudgetInterfaces\IBudgetBase.cs" />
     <Compile Include="Models_V1\BudgetModels\Income.cs" />
     <Compile Include="Models_V1\BudgetModels\PayPeriod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models_V1\DebtInterfaces\" />
     <Folder Include="Models_V1\DebtModels\" />
+    <Folder Include="Models_V1\PaystubInterfaces\" />
     <Folder Include="Models_V1\PaystubModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

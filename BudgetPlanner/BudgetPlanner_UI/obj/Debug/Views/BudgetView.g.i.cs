@@ -40,6 +40,30 @@ namespace BudgetPlanner_UI.Views {
     /// </summary>
     public partial class BudgetView : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
+        
+        #line 9 "..\..\..\Views\BudgetView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Grid MainGrid;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 34 "..\..\..\Views\BudgetView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.DataGrid IncomeDataGrid;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 252 "..\..\..\Views\BudgetView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.DataGrid ExpenseDataGrid;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -68,6 +92,18 @@ namespace BudgetPlanner_UI.Views {
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {
+            switch (connectionId)
+            {
+            case 1:
+            this.MainGrid = ((System.Windows.Controls.Grid)(target));
+            return;
+            case 2:
+            this.IncomeDataGrid = ((System.Windows.Controls.DataGrid)(target));
+            return;
+            case 3:
+            this.ExpenseDataGrid = ((System.Windows.Controls.DataGrid)(target));
+            return;
+            }
             this._contentLoaded = true;
         }
     }
