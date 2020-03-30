@@ -15,6 +15,7 @@ namespace BudgetPlanner_UI.ViewModels
 		#region Nested Views
 		public BudgetViewModel BudgetVM { get; set; }
 		public PaystubViewModel PaystubVM { get; set; }
+		public DebtViewModel DebtVM { get; set; }
 		#endregion
 
 		#endregion
@@ -24,6 +25,7 @@ namespace BudgetPlanner_UI.ViewModels
 		{
 			BudgetVM = UIFactory.BuildViewModel<BudgetViewModel>();
 			PaystubVM = UIFactory.BuildViewModel<PaystubViewModel>();
+			DebtVM = UIFactory.BuildViewModel<DebtViewModel>();
 		}
 		#endregion
 

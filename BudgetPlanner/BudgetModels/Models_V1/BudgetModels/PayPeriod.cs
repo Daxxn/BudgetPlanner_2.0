@@ -8,6 +8,7 @@ namespace BudgetModels.Models_V1.BudgetModels
 {
     public enum PayPeriod
     {
+        Once,
         Annual,
         BiAnnual,
         Month,

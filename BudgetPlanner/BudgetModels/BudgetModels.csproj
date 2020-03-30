@@ -48,6 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models_V1\BudgetModels\Interfaces\" />
     <Folder Include="Models_V1\DebtModels\" />
     <Folder Include="Models_V1\PaystubModels\" />
   </ItemGroup>

@@ -10,6 +10,7 @@ namespace BudgetModels.Models_V1.BudgetModels
 	{
 		#region - Fields & Properties
 		public decimal RemainingAmount { get; set; }
+		public decimal AmountPayed { get; set; }
 		public DateTime DueDate { get; set; }
 		public bool IsPayedOff { get; set; }
 		public bool IsPayedInFull { get; set; }

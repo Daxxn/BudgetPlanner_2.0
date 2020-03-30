@@ -7,3 +7,5 @@ C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\o
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\obj\Debug\StateControl.csproj.CopyComplete
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\obj\Debug\StateControl.dll
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\obj\Debug\StateControl.pdb
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\StateControl\bin\Debug\Newtonsoft.Json.xml

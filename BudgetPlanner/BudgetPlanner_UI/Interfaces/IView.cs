@@ -8,5 +8,6 @@ namespace BudgetPlanner_UI.Interfaces
 {
     public interface IView
     {
+        void SetBindings( );
     }
 }
