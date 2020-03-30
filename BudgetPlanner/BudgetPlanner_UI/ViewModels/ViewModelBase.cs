@@ -18,15 +18,5 @@ namespace BudgetPlanner_UI.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        public void OnPropertyChanged( object obj )
-        {
-            string name = obj.GetType().Name;
-
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
     }
 }

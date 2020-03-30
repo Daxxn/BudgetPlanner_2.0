@@ -13,6 +13,7 @@ namespace BudgetModels.Models_V1.BudgetModels
 		public string Title { get; set; }
 		public string Description { get; set; }
 		public decimal Amount { get; set; }
+		public DateTime DueDate { get; set; }
 		#endregion
 
 		#region - Constructors

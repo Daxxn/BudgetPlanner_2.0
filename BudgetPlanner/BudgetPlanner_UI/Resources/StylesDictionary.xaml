@@ -23,12 +23,21 @@
 		<Setter Property="FontWeight" Value="DemiBold"/>
 		<Setter Property="HorizontalAlignment" Value="Center"/>
 	</Style>
+
+	<Style TargetType="TextBlock" x:Key="TB_Upcoming_Name">
+		<Setter Property="FontSize" Value="11"/>
+		<Setter Property="Margin" Value="2,0,2,0"/>
+	</Style>
+
+	<Style TargetType="TextBlock" BasedOn="{StaticResource TB_Upcoming_Name}" x:Key="TB_Upcoming_Element">
+		<Setter Property="Margin" Value="2,0,6,0"/>
+	</Style>
 	<!--#endregion-->
 	
 	<!--#region Borders -->
 	<Style TargetType="Border" x:Key="BD_Totals_Category">
 		<Setter Property="BorderBrush" Value="{StaticResource BD_Brush_Totals_Category}"/>
-		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="BorderThickness" Value="2"/>
 		<Setter Property="Padding" Value="2"/>
 		<Setter Property="Margin" Value="2"/>
 	</Style>
@@ -38,6 +47,12 @@
 		<Setter Property="Background" Value="{StaticResource BD_Background_totals_View}"/>
 		<Setter Property="Margin" Value="4"/>
 		<Setter Property="Padding" Value="4"/>
+	</Style>
+
+	<Style TargetType="Border" x:Key="BD_Upcoming_Element">
+		<Setter Property="BorderBrush" Value="{StaticResource BD_Brush_Upcoming_Element}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Margin" Value="2,1,1,2"/>
 	</Style>
 	<!--#endregion-->
 </ResourceDictionary>

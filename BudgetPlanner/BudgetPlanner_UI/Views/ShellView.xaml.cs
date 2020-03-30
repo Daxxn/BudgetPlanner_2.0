@@ -33,6 +33,8 @@ namespace BudgetPlanner_UI.Views
 
         public void SetBindings( )
         {
+            var vm = DataContext as ShellViewModel;
+            KeyUp += vm.KeyUpEvent;
         }
     }
 }

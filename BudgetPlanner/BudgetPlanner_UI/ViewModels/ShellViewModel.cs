@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BudgetPlanner_UI.ViewModels
 {
@@ -30,6 +31,13 @@ namespace BudgetPlanner_UI.ViewModels
 		#endregion
 
 		#region - Methods
+
+		#region Event Handlers
+		public void KeyUpEvent( object sender, KeyEventArgs e )
+		{
+			BudgetVM.KeyUpEvent(sender, e);
+		}
+		#endregion
 
 		#endregion
 

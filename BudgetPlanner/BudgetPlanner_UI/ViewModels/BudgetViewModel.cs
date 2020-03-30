@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace BudgetPlanner_UI.ViewModels
 {
     public class BudgetViewModel : ViewModelBase, IViewModel
 	{
 		#region - Fields & Properties
-		public ObservableCollection<Income> _incomeDataList;
-		public ObservableCollection<Expense> _expenseDataList;
+		private ObservableCollection<Income> _incomeDataList;
+		private ObservableCollection<Expense> _expenseDataList;
+
+		private ObservableCollection<Income> _upcomingIncome;
+		private ObservableCollection<Expense> _upcomingExpenses;
 
 		public Income _selectedIncome;
 		public Expense _selectedExpense;
@@ -39,7 +43,9 @@ namespace BudgetPlanner_UI.ViewModels
 					AmountRecieved = 22.7M,
 					Description = "test Income 1",
 					IsRecieved = false,
-					Period = PayPeriod.Once
+					Period = PayPeriod.Once,
+
+					DueDate = new DateTime(2020, 2, 5)
 				},
 				new Income
 				{
@@ -70,10 +76,10 @@ namespace BudgetPlanner_UI.ViewModels
 					IDNumber = 1,
 					Title = "Test 1",
 					Amount = 42.42M,
-					RemainingAmount = 24.24M,
+					AmountPayed = 24.24M,
 					Description = "Test Expense 1",
 					IsPayedOff = false,
-					IsPayedInFull = false,
+					IsPayedOnce = false,
 					DueDate = DateTime.Now.AddMonths(2)
 				},
 				new Expense
@@ -81,11 +87,21 @@ namespace BudgetPlanner_UI.ViewModels
 					IDNumber = 2,
 					Title = "Test 2",
 					Amount = 1200,
-					RemainingAmount = 383.40M,
+					AmountPayed = 383.40M,
 					Description = "Test Expense 2",
 					IsPayedOff = false,
-					IsPayedInFull = false,
-					DueDate = DateTime.Now.AddDays(7)
+					IsPayedOnce = false,
+					DueDate = DateTime.Now.AddMonths(3)
+				},
+				new Expense
+				{
+					IDNumber = 3,
+					Title = "Test 3 Behind",
+					Amount = 350,
+					AmountPayed = 100,
+					Description = "Test Expense Behind 1",
+					IsPayedOff = false,
+					DueDate = new DateTime(2020,2,10)
 				}
 			};
 			#endregion
@@ -103,16 +119,27 @@ namespace BudgetPlanner_UI.ViewModels
 		public void ExpenseCellChangedEvent( object sender, EventArgs e )
 		{
 			CalculateAmountTotal(false);
+			CalculateRemainingFromPayedAmount();
 			CalculateRemainingAmountTotal();
+			GetUpcomingExpenses();
 		}
-		#endregion
-		/// <summary>
-		/// Calculate the total for income or expense based on the bool given.
-		/// </summary>
-		public void CalculateAmountTotal( bool isIncome )
-		{
-			
 
+		public void KeyUpEvent( object sender, KeyEventArgs e )
+		{
+			if (e.Key == Key.F5)
+			{
+				IncomeCellChangedEvent(sender, e);
+				ExpenseCellChangedEvent(sender, e);
+			}
+		}
+        #endregion
+
+        #region Calculate Income/Expense Data
+        /// <summary>
+        /// Calculate the total for income or expense based on the bool given.
+        /// </summary>
+        public void CalculateAmountTotal( bool isIncome )
+		{
 			if (isIncome)
 			{
 				IncomeTotal = 0;
@@ -160,10 +187,41 @@ namespace BudgetPlanner_UI.ViewModels
 				}
 			}
 		}
-        #endregion
 
-        #region - Full Properties
-        public ObservableCollection<Income> IncomeDataList
+		public void CalculateRemainingFromPayedAmount(  )
+		{
+			if (ExpenseDataList != null)
+			{
+				foreach (var exp in ExpenseDataList)
+				{
+					exp.CalcRemainingFromPayed();
+				}
+			}
+		}
+		#endregion
+
+		#region Get Upcoming Income/Expenses
+		public void GetUpcomingExpenses(  )
+		{
+			if (ExpenseDataList != null)
+			{
+				UpcomingExpenses = new ObservableCollection<Expense>(BudgetController.SortDueExpenses(ExpenseDataList, true));
+			}
+		}
+
+		public void GetUpcomingIncome(  )
+		{
+			if (IncomeDataList != null)
+			{
+				UpcomingIncome = new ObservableCollection<Income>(BudgetController.SortDueExpenses(IncomeDataList, true));
+			}
+		}
+		#endregion
+
+		#endregion
+
+		#region - Full Properties
+		public ObservableCollection<Income> IncomeDataList
 		{
 			get { return _incomeDataList; }
 			set
@@ -180,6 +238,26 @@ namespace BudgetPlanner_UI.ViewModels
 			{
 				_expenseDataList = value;
 				OnPropertyChanged(nameof(ExpenseDataList));
+			}
+		}
+
+		public ObservableCollection<Income> UpcomingIncome
+		{
+			get { return _upcomingIncome; }
+			set
+			{
+				_upcomingIncome = value;
+				OnPropertyChanged(nameof(UpcomingIncome));
+			}
+		}
+
+		public ObservableCollection<Expense> UpcomingExpenses
+		{
+			get { return _upcomingExpenses; }
+			set
+			{
+				_upcomingExpenses = value;
+				OnPropertyChanged(nameof(UpcomingExpenses));
 			}
 		}
 

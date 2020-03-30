@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models_V1\BudgetModels\BudgetBase.cs" />
+    <Compile Include="Models_V1\BudgetModels\BudgetController.cs" />
     <Compile Include="Models_V1\BudgetModels\Expense.cs" />
     <Compile Include="Models_V1\BudgetModels\Income.cs" />
     <Compile Include="Models_V1\BudgetModels\PayPeriod.cs" />

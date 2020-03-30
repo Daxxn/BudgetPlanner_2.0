@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BudgetPlanner_UI.Views"
 		xmlns:models="clr-namespace:BudgetModels.Models_V1.BudgetModels;assembly=BudgetModels"
         mc:Ignorable="d"
-        Title="Budget Planner" Height="650" Width="1310">
+        Title="Budget Planner" Height="650" Width="Auto">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<!--<ColumnDefinition Width="Auto"/>-->

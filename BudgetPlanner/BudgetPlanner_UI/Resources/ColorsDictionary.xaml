@@ -13,5 +13,6 @@
 	<SolidColorBrush x:Key="BD_Brush_Totals_Category" Color="#FF94DCCF"/>
 	<SolidColorBrush x:Key="BD_Brush_Totals_View" Color="#FF18DAB7"/>
 	<SolidColorBrush x:Key="BD_Background_totals_View" Color="#7FDEF2FF"/>
+	<SolidColorBrush x:Key="BD_Brush_Upcoming_Element" Color="#FF4EB2A0"/>
 	<!--#endregion-->
 </ResourceDictionary>
