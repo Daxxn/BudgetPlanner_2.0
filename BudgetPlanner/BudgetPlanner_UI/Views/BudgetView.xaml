@@ -33,8 +33,11 @@
 		<!--#region Income DataGrid -->
 		<DataGrid x:Name="IncomeDataGrid" Grid.Row="1" Grid.Column="1"
 				ItemsSource="{Binding Path=IncomeDataList}"
-				SelectedItem="{Binding Path=SelectedIncome}"
-		/>
+				SelectedItem="{Binding Path=SelectedIncome}">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Amount" Binding="{Binding Path=Amount, StringFormat=C2}"/>
+			</DataGrid.Columns>
+		</DataGrid>
 		<!--#endregion-->
 
 		<GridSplitter Grid.Row="1" Grid.Column="2"
@@ -42,8 +45,7 @@
 				ShowsPreview="False"
 				Background="AliceBlue"
 				VerticalAlignment="Stretch"
-				HorizontalAlignment="Center"
-		/>
+				HorizontalAlignment="Center"/>
 		
 		<!--#region Totals & Other Data -->
 		<Border Grid.Row="1" Grid.Column="3"
@@ -54,11 +56,13 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
 
 				<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-					Style="{StaticResource TB_Totals_ViewTitle}">
-				Totals
+						Style="{StaticResource TB_Totals_ViewTitle}">
+					Totals
 				</TextBlock>
 
 				<Border Grid.Row="1" Style="{StaticResource BD_Totals_Category}">
@@ -71,34 +75,55 @@
 							<RowDefinition Height="Auto"/>
 							<RowDefinition Height="Auto"/>
 							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
 						</Grid.RowDefinitions>
 
 						<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-							Style="{StaticResource TB_Totals_Category}">
-						Amount Totals
+								Style="{StaticResource TB_Totals_Category}">
+							Amount Totals
 						</TextBlock>
 
 						<TextBlock Grid.Row="1" Grid.Column="0"
-							Style="{StaticResource TB_Totals_Title}">
-						Income Total
+								Style="{StaticResource TB_Totals_Title}">
+							Income Total
 						</TextBlock>
 						<TextBlock Grid.Row="1" Grid.Column="1"
-							Style="{StaticResource TB_Totals_Result}"
-							Text="{Binding Path=IncomeTotal,
-									Mode=TwoWay, 
-									UpdateSourceTrigger=PropertyChanged}"
-					/>
+								Style="{StaticResource TB_Totals_Result}"
+								Text="{Binding Path=IncomeTotal,
+										Mode=Default,
+										StringFormat= N2,
+										UpdateSourceTrigger=PropertyChanged}"/>
 
 						<TextBlock Grid.Row="2" Grid.Column="0"
-							Style="{StaticResource TB_Totals_Title}">
-						ExpenseTotal
+								Style="{StaticResource TB_Totals_Title}">
+							ExpenseTotal
 						</TextBlock>
 						<TextBlock Grid.Row="2" Grid.Column="1"
-							Style="{StaticResource TB_Totals_Result}"
-							Text="{Binding Path=ExpenseTotal,
-									Mode=Default,
-									UpdateSourceTrigger=PropertyChanged}"
-					/>
+								Style="{StaticResource TB_Totals_Result}"
+								Text="{Binding Path=ExpenseTotal,
+										Mode=Default,
+										StringFormat= N2,
+										UpdateSourceTrigger=PropertyChanged}"/>
+
+						<TextBlock Grid.Row="3" Grid.Column="0"
+								Style="{StaticResource TB_Totals_Title}">
+							Current Balance
+						</TextBlock>
+						<TextBlock Grid.Row="3" Grid.Column="1"
+								Text="{Binding Path=TotalsDifference,
+										Mode=TwoWay,
+										StringFormat= N2,
+										UpdateSourceTrigger=PropertyChanged}">
+							<TextBlock.Style>
+								<Style TargetType="TextBlock" BasedOn="{StaticResource TB_Totals_Result}">
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding Path=IsDiffNegative, UpdateSourceTrigger=PropertyChanged}" Value="True">
+											<Setter Property="Background" Value="Red"/>
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</TextBlock.Style>
+						</TextBlock>
 					</Grid>
 				</Border>
 
@@ -113,34 +138,33 @@
 							<RowDefinition Height="Auto"/>
 							<RowDefinition Height="Auto"/>
 							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
 						</Grid.RowDefinitions>
 
 						<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-							Style="{StaticResource TB_Totals_Category}">
-						Owed/Recieved Totals
+								Style="{StaticResource TB_Totals_Category}">
+							Owed/Recieved Totals
 						</TextBlock>
 
 						<TextBlock Grid.Row="1" Grid.Column="0"
-							Style="{StaticResource TB_Totals_Title}">
-						Recieved
+								Style="{StaticResource TB_Totals_Title}">
+							Recieved
 						</TextBlock>
 						<TextBlock Grid.Row="1" Grid.Column="1"
-							Style="{StaticResource TB_Totals_Result}"
-							Text="{Binding Path=IncomeRecievedTotal,
-									Mode=TwoWay,
-									UpdateSourceTrigger=PropertyChanged}"
-					/>
+								Style="{StaticResource TB_Totals_Result}"
+								Text="{Binding Path=IncomeRecievedTotal,
+										Mode=TwoWay,
+										UpdateSourceTrigger=PropertyChanged}"/>
 
 						<TextBlock Grid.Row="2" Grid.Column="0"
-							Style="{StaticResource TB_Totals_Title}">
-						Remaining
+								Style="{StaticResource TB_Totals_Title}">
+							Remaining
 						</TextBlock>
 						<TextBlock Grid.Row="2" Grid.Column="1"
-							Style="{StaticResource TB_Totals_Result}"
-							Text="{Binding Path=ExpenseRemainingTotal,
+								Style="{StaticResource TB_Totals_Result}"
+								Text="{Binding Path=ExpenseRemainingTotal,
 									Mode=TwoWay,
-									UpdateSourceTrigger=PropertyChanged}"
-					/>
+									UpdateSourceTrigger=PropertyChanged}"/>
 					</Grid>
 				</Border>
 
@@ -186,9 +210,9 @@
 													<TextBlock Grid.Column="0" Text="Name:" Style="{StaticResource TB_Upcoming_Name}"/>
 													<TextBlock Grid.Column="1" Text="{Binding Path=Title}" Style="{StaticResource TB_Upcoming_Element}"/>
 													<TextBlock Grid.Column="2" Text="Amount:" Style="{StaticResource TB_Upcoming_Name}"/>
-													<TextBlock Grid.Column="3" Text="{Binding Path=Amount}" Style="{StaticResource TB_Upcoming_Element}"/>
+													<TextBlock Grid.Column="3" Text="{Binding Path=Amount, StringFormat=N2}" Style="{StaticResource TB_Upcoming_Element}"/>
 													<TextBlock Grid.Column="4" Text="Due:" Style="{StaticResource TB_Upcoming_Name}"/>
-													<TextBlock Grid.Column="5" Text="{Binding Path=RemainingAmount}" Style="{StaticResource TB_Upcoming_Element}"/>
+													<TextBlock Grid.Column="5" Text="{Binding Path=RemainingAmount, StringFormat=N2}" Style="{StaticResource TB_Upcoming_Element}"/>
 												</Grid>
 											</Border>
 										</DataTemplate>
@@ -236,6 +260,10 @@
 						</Border>
 					</Grid>
 				</Border>
+
+				<StackPanel Grid.Row="4">
+					<TextBlock Text="{Binding Path=SelectedIncome.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+				</StackPanel>
 			</Grid>
 		</Border>
 		<!--#endregion-->
@@ -245,14 +273,12 @@
 				ShowsPreview="False"
 				Background="AliceBlue"
 				VerticalAlignment="Stretch"
-				HorizontalAlignment="Center"
-		/>
+				HorizontalAlignment="Center"/>
 
 		<!--#region Expense DataGrid -->
 		<DataGrid x:Name="ExpenseDataGrid" Grid.Row="1" Grid.Column="5"
 				ItemsSource="{Binding Path=ExpenseDataList}"
-				SelectedItem="{Binding Path=SelectedExpense}"
-		/>
+				SelectedItem="{Binding Path=SelectedExpense}"/>
 		<!--#endregion-->
 	</Grid>
 </UserControl>

@@ -27,6 +27,8 @@ namespace BudgetPlanner_UI.ViewModels
 		private decimal _expenseTotal;
 		private decimal _incomeRecTotal;
 		private decimal _expenseRecTotal;
+		private decimal _totalsDiff;
+		private bool _isDiffNeg;
 		#endregion
 
 		#region - Constructors
@@ -114,6 +116,7 @@ namespace BudgetPlanner_UI.ViewModels
 		{
 			CalculateAmountTotal(true);
 			CalculateAmountRecievedTotal();
+			CalculateDifference();
 		}
 
 		public void ExpenseCellChangedEvent( object sender, EventArgs e )
@@ -122,6 +125,7 @@ namespace BudgetPlanner_UI.ViewModels
 			CalculateRemainingFromPayedAmount();
 			CalculateRemainingAmountTotal();
 			GetUpcomingExpenses();
+			CalculateDifference();
 		}
 
 		public void KeyUpEvent( object sender, KeyEventArgs e )
@@ -197,6 +201,11 @@ namespace BudgetPlanner_UI.ViewModels
 					exp.CalcRemainingFromPayed();
 				}
 			}
+		}
+
+		public void CalculateDifference(  )
+		{
+			TotalsDifference = IncomeTotal - ExpenseTotal;
 		}
 		#endregion
 
@@ -318,6 +327,43 @@ namespace BudgetPlanner_UI.ViewModels
 			{
 				_expenseRecTotal = value;
 				OnPropertyChanged(nameof(ExpenseRemainingTotal));
+			}
+		}
+
+		public decimal TotalsDifference
+		{
+			get { return _totalsDiff; }
+			set
+			{
+				if (value < (decimal)0)
+				{
+					_isDiffNeg = true;
+				}
+				else
+				{
+					_isDiffNeg = false;
+				}
+				_totalsDiff = value;
+				OnPropertyChanged(nameof(TotalsDifference));
+				OnPropertyChanged(nameof(IsDiffNegative));
+			}
+		}
+
+		public bool IsDiffNegative
+		{
+			get { return _isDiffNeg; }
+			set
+			{
+				//if (TotalsDifference < (decimal)0)
+				//{
+				//	_isDiffNeg = false;
+				//}
+				//else
+				//{
+				//	_isDiffNeg = true;
+				//}
+				_isDiffNeg = value;
+				OnPropertyChanged(nameof(IsDiffNegative));
 			}
 		}
 		#endregion

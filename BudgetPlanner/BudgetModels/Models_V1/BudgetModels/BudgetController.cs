@@ -19,7 +19,7 @@ namespace BudgetModels.Models_V1.BudgetModels
 
 			foreach (var d in expenses)
 			{
-				if (d.DueDate.CompareTo(DateTime.Now) > 0)
+				if (d.DueDate.CompareTo(DateTime.Today) > 0)
 				{
 					output.Add(d);
 				}
@@ -36,7 +36,7 @@ namespace BudgetModels.Models_V1.BudgetModels
 			{
 				foreach (var d in budgetData)
 				{
-					if (d.DueDate.CompareTo(DateTime.Now) >= 0)
+					if (d.DueDate.CompareTo(DateTime.Today) >= 0)
 					{
 						output.Add(d);
 					}
@@ -47,7 +47,7 @@ namespace BudgetModels.Models_V1.BudgetModels
 			{
 				foreach (var d in budgetData)
 				{
-					if (d.DueDate.CompareTo(DateTime.Now) < 0)
+					if (d.DueDate.CompareTo(DateTime.Today) < 0)
 					{
 						output.Add(d);
 					}
@@ -66,7 +66,7 @@ namespace BudgetModels.Models_V1.BudgetModels
 
 			foreach (var d in dates)
 			{
-				if (d.CompareTo(DateTime.Now) > 0)
+				if (d.CompareTo(DateTime.Today) > 0)
 				{
 					output.Add(d);
 				}
