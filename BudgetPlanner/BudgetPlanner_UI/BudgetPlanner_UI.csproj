@@ -63,11 +63,15 @@
     <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="UIFactory.cs" />
     <Compile Include="ViewModels\BudgetViewModel.cs" />
+    <Compile Include="ViewModels\DebtViewModel.cs" />
     <Compile Include="ViewModels\PaystubViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\BudgetView.xaml.cs">
       <DependentUpon>BudgetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DebtView.xaml.cs">
+      <DependentUpon>DebtView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PaystubView.xaml.cs">
       <DependentUpon>PaystubView.xaml</DependentUpon>
@@ -103,7 +107,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\ColorsDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\StylesDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BudgetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DebtView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -44,6 +44,7 @@
     <Compile Include="BudgetFactory.cs" />
     <Compile Include="Models_V1\BudgetInterfaces\IBudget.cs" />
     <Compile Include="Models_V1\BudgetModels\BudgetBase.cs" />
+    <Compile Include="Models_V1\BudgetModels\BudgetController.cs" />
     <Compile Include="Models_V1\BudgetModels\Expense.cs" />
     <Compile Include="Models_V1\BudgetInterfaces\IExpense.cs" />
     <Compile Include="Models_V1\BudgetInterfaces\IIncome.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models_V1\BudgetModels\Interfaces\" />
     <Folder Include="Models_V1\DebtModels\" />
     <Folder Include="Models_V1\PaystubModels\" />
   </ItemGroup>
