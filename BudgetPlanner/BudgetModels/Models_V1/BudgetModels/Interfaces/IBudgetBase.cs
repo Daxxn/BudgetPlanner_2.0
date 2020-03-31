@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BudgetModels.Models_V1.BudgetInterfaces
+namespace BudgetModels.Models_V1.BudgetModels.Interfaces
 {
     public interface IBudgetBase : IBudget
     {

@@ -1,4 +1,5 @@
 ﻿using BudgetModels.Models_V1.BudgetModels;
+using BudgetModels.Models_V1.BudgetModels.Interfaces;
 using BudgetPlanner_UI.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ namespace BudgetPlanner_UI.ViewModels
 		private ObservableCollection<Income> _upcomingIncome;
 		private ObservableCollection<Expense> _upcomingExpenses;
 
-		public Income _selectedIncome;
-		public Expense _selectedExpense;
+		public IIncome _selectedIncome;
+		public IExpense _selectedExpense;
 
 		private decimal _incomeTotal;
 		private decimal _expenseTotal;
@@ -270,7 +271,7 @@ namespace BudgetPlanner_UI.ViewModels
 			}
 		}
 
-		public Income SelectedIncome
+		public IIncome SelectedIncome
 		{
 			get { return _selectedIncome; }
 			set
@@ -280,7 +281,7 @@ namespace BudgetPlanner_UI.ViewModels
 			}
 		}
 
-		public Expense SelectedExpense
+		public IExpense SelectedExpense
 		{
 			get { return _selectedExpense; }
 			set
@@ -354,14 +355,6 @@ namespace BudgetPlanner_UI.ViewModels
 			get { return _isDiffNeg; }
 			set
 			{
-				//if (TotalsDifference < (decimal)0)
-				//{
-				//	_isDiffNeg = false;
-				//}
-				//else
-				//{
-				//	_isDiffNeg = true;
-				//}
 				_isDiffNeg = value;
 				OnPropertyChanged(nameof(IsDiffNegative));
 			}

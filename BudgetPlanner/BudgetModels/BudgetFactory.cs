@@ -1,5 +1,5 @@
-﻿using BudgetModels.Models_V1.BudgetInterfaces;
-using BudgetModels.Models_V1.BudgetModels;
+﻿using BudgetModels.Models_V1.BudgetModels;
+using BudgetModels.Models_V1.BudgetModels.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

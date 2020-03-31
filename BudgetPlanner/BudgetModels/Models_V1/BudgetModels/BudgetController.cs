@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BudgetModels.Models_V1.BudgetModels.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,6 +59,20 @@ namespace BudgetModels.Models_V1.BudgetModels
 			//return output.OrderBy(x => x.DueDate.Date);
 		}
 
+		public static IEnumerable<IExpense> SortDueExpenses( IEnumerable<IExpense> expenses )
+		{
+			List<Expense> output = new List<Expense>();
+
+			foreach (var d in expenses)
+			{
+				if (d.DueDate.CompareTo(DateTime.Today) > 0)
+				{
+					output.Add((Expense)d);
+				}
+			}
+
+			return output.OrderBy(x => x.DueDate.Date);
+		}
 		#region Example
 		public static IEnumerable<DateTime> OrderSortDates( IEnumerable<DateTime> dates )
 		{
