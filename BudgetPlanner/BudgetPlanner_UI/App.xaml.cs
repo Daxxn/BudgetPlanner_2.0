@@ -17,15 +17,9 @@ namespace BudgetPlanner_UI
     {
         protected override void OnStartup( StartupEventArgs e )
         {
-            FactoryTesting();
             base.OnStartup(e);
             var shellView = new ShellView(ShellViewModel.Instance);
             shellView.Show();
-        }
-
-        private void FactoryTesting(  )
-        {
-            UIFactory.BuildViewModel<BudgetViewModel>();
         }
     }
 }

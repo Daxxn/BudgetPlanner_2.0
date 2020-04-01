@@ -41,8 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BudgetFactory.cs" />
+    <Compile Include="Models_V1\BudgetModels\Interfaces\IBudget.cs" />
     <Compile Include="Models_V1\BudgetModels\BudgetBase.cs" />
+    <Compile Include="Models_V1\BudgetModels\BudgetController.cs" />
     <Compile Include="Models_V1\BudgetModels\Expense.cs" />
+    <Compile Include="Models_V1\BudgetModels\Interfaces\IExpense.cs" />
+    <Compile Include="Models_V1\BudgetModels\Interfaces\IIncome.cs" />
+    <Compile Include="Models_V1\BudgetModels\Interfaces\IBudgetBase.cs" />
     <Compile Include="Models_V1\BudgetModels\Income.cs" />
     <Compile Include="Models_V1\BudgetModels\PayPeriod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

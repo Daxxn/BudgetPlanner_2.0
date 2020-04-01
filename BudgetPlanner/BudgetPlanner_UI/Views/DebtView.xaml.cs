@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BudgetPlanner_UI.Interfaces;
+using BudgetPlanner_UI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +20,17 @@ namespace BudgetPlanner_UI.Views
     /// <summary>
     /// Interaction logic for DebtView.xaml
     /// </summary>
-    public partial class DebtView : UserControl
+    public partial class DebtView : UserControl, IView
     {
-        public DebtView( )
+        public DebtView( DebtViewModel vm )
         {
             InitializeComponent();
+            DataContext = vm;
+            SetBindings();
+        }
+
+        public void SetBindings( )
+        {
         }
     }
 }
