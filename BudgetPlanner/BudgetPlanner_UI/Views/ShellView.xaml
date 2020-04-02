@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetPlanner_UI.Views"
 		xmlns:models="clr-namespace:BudgetModels.Models_V1.BudgetModels;assembly=BudgetModels"
-        mc:Ignorable="d"
-        Title="Budget Planner" Height="650" Width="Auto">
+        mc:Ignorable="d" WindowState="Maximized"
+        Title="Budget Planner" Height="650" Width="1920">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<!--<ColumnDefinition Width="Auto"/>-->

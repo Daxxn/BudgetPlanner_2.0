@@ -4,9 +4,201 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BudgetPlanner_UI.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"  Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
-    </Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!--#region Main Grid -->
+		<Border Grid.Column="0" Style="{StaticResource BD_Totals_View}">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+
+				<!--#region Controls -->
+				<Border Grid.Row="0" Style="{StaticResource BD_Totals_Category}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.ColumnSpan="2" Style="{StaticResource TB_Totals_ViewTitle}">Paystub Controls</TextBlock>
+
+						<Button x:Name="AddMany" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+							Add Multiple
+						</Button>
+						<Button x:Name="AddOne" Grid.Column="0" Grid.Row="2">
+							Add One
+						</Button>
+						<Button x:Name="DeleteOne" Grid.Column="1" Grid.Row="2">
+							Delete One
+						</Button>
+					</Grid>
+				</Border>
+				<!--#endregion-->
+
+				<!--#region Totals Display -->
+				<Border Grid.Row="1" Style="{StaticResource BD_Totals_Category}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.ColumnSpan="2" Style="{StaticResource TB_Totals_ViewTitle}">Totals</TextBlock>
+
+						<TextBlock Grid.Row="1" Grid.Column="0"
+								Style="{StaticResource TB_Totals_Title}">
+							Gross
+						</TextBlock>
+						<TextBlock Grid.Row="1" Grid.Column="1"
+								Style="{StaticResource TB_Totals_Result}"
+								Text="{Binding Path=TotalGross}"/>
+
+						<TextBlock Grid.Row="2" Grid.Column="0"
+								Style="{StaticResource TB_Totals_Title}">
+							Net
+						</TextBlock>
+						<TextBlock Grid.Row="2" Grid.Column="1"
+								Style="{StaticResource TB_Totals_Result}"
+								Text="{Binding Path=TotalNet}"/>
+
+						<TextBlock Grid.Row="3" Grid.Column="0"
+								Style="{StaticResource TB_Totals_Title}">
+							Tax
+						</TextBlock>
+						<TextBlock Grid.Row="3" Grid.Column="1"
+								Style="{StaticResource TB_Totals_Result}"
+								Text="{Binding Path=TotalTax}"/>
+					</Grid>
+				</Border>
+				<!--#endregion-->
+
+				<!--#region Tax Estimate Display -->
+				<Border Grid.Row="2" Style="{StaticResource BD_Totals_Category}">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Style="{StaticResource TB_Totals_ViewTitle}">Tax Estimates</TextBlock>
+
+						<Border Grid.Row="1" Style="{StaticResource BD_Totals_Category}">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<TextBlock Grid.Row="0" Grid.Column="0"
+										Grid.ColumnSpan="2"
+										Style="{StaticResource TB_Totals_Category}">
+									Averages
+								</TextBlock>
+								
+								<TextBlock Grid.Row="1" Grid.Column="0"
+										Style="{StaticResource TB_Totals_Title}">
+									Average Gross
+								</TextBlock>
+								<TextBlock Grid.Row="1" Grid.Column="1"
+										Style="{StaticResource TB_Totals_Result}"
+										Text="{Binding Path=AverageGross}"/>
+
+								<TextBlock Grid.Row="2" Grid.Column="0"
+										Style="{StaticResource TB_Totals_Title}">
+									Average Net
+								</TextBlock>
+								<TextBlock Grid.Row="2" Grid.Column="1"
+										Style="{StaticResource TB_Totals_Result}"
+										Text="{Binding Path=AverageNet}"/>
+
+								<TextBlock Grid.Row="3" Grid.Column="0"
+										Style="{StaticResource TB_Totals_Title}">
+									Average Tax Rate
+								</TextBlock>
+								<TextBlock Grid.Row="3" Grid.Column="1"
+										Style="{StaticResource TB_Totals_Result}"
+										Text="{Binding Path=AverageTax}"/>
+							</Grid>
+						</Border>
+					</Grid>
+				</Border>
+				<!--#endregion-->
+			</Grid>
+		</Border>
+		<!--#endregion-->
+		
+		<!--#region Tax Estimate Display (Maybe) -->
+		
+		<!--#endregion-->
+		
+		<!--#region Data Display -->
+		<Border Grid.Column="2" Style="{StaticResource BD_Totals_Category}">
+			<DataGrid Grid.Column="2" x:Name="PaystubDisplayTest"
+				ItemsSource="{Binding Path=PaystubDataList}"
+				AutoGenerateColumns="False"
+				CanUserAddRows="True">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Gross" Binding="{Binding Path=GrossPay}"/>
+					<DataGridTextColumn Header="Net" Binding="{Binding Path=NetPay}"/>
+					<DataGridTextColumn Header="Tax" Binding="{Binding Path=TaxDeductions}"/>
+					<DataGridTemplateColumn Header="Start Test">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<DatePicker SelectedDate="{Binding Path=Period.Start}"
+									SelectedDateFormat="Short"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+					<DataGridTemplateColumn Header="End Date">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<DatePicker SelectedDate="{Binding Path=Period.End}"
+									SelectedDateFormat="Short"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+					<DataGridTemplateColumn Header="Pay Date">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<DatePicker SelectedDate="{Binding Path=Period.PayDate}"
+									SelectedDateFormat="Short"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+		</Border>
+		<!--#endregion-->
+	</Grid>
 </UserControl>

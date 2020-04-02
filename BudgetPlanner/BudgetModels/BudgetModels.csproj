@@ -51,11 +51,14 @@
     <Compile Include="Models_V1\BudgetModels\Interfaces\IBudgetBase.cs" />
     <Compile Include="Models_V1\BudgetModels\Income.cs" />
     <Compile Include="Models_V1\BudgetModels\PayPeriod.cs" />
+    <Compile Include="Models_V1\PaystubModels\Interfaces\IPaystub.cs" />
+    <Compile Include="Models_V1\PaystubModels\PayDates.cs" />
+    <Compile Include="Models_V1\PaystubModels\Paystub.cs" />
+    <Compile Include="PaystubFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models_V1\DebtModels\" />
-    <Folder Include="Models_V1\PaystubModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

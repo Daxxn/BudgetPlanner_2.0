@@ -1,5 +1,6 @@
 ﻿using BudgetPlanner_UI.Interfaces;
 using BudgetPlanner_UI.ViewModels;
+using BudgetPlanner_UI.Views.DialogWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,21 @@ namespace BudgetPlanner_UI.Views
             SetBindings();
         }
 
-        public void SetBindings( )
+        public void SetBindings(  )
         {
+            var vm = DataContext as PaystubViewModel;
+            AddMany.Click += vm.AddManyEvent;
+            AddMany.Click += AddManyClick;
+            AddOne.Click += vm.AddOneEvent;
+            DeleteOne.Click += vm.DeleteOne;
+        }
+
+        private void AddManyClick( object sender, RoutedEventArgs e )
+        {
+            var vm = DataContext as PaystubViewModel;
+            var addManyWindow = new AddPaystubView(vm.AddPaystubVM);
+
+            addManyWindow.Show();
         }
     }
 }
