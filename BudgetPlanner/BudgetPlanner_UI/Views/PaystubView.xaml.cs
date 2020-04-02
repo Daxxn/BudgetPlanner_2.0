@@ -26,6 +26,11 @@ namespace BudgetPlanner_UI.Views
         {
             InitializeComponent();
             DataContext = vm;
+            SetBindings();
+        }
+
+        public void SetBindings( )
+        {
         }
     }
 }
