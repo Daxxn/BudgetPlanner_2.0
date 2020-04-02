@@ -35,6 +35,9 @@ namespace BudgetPlanner_UI.Views
         {
             var vm = DataContext as ShellViewModel;
             KeyUp += vm.KeyUpEvent;
+            OpenMenu.Click += vm.OpenEvent;
+            SaveMenu.Click += vm.SaveEvent;
+            SaveAsMenu.Click += vm.SaveAsEvent;
         }
     }
 }
