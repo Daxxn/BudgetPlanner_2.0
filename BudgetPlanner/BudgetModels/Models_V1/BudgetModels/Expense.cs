@@ -10,11 +10,10 @@ namespace BudgetModels.Models_V1.BudgetModels
 	public class Expense : BudgetBase, IExpense
 	{
 		#region - Fields & Properties
-		public decimal RemainingAmount { get; set; }
-		public decimal AmountPayed { get; set; }
-		public bool IsPayedOff { get; set; }
-		public bool IsPayedOnce { get; set; }
-		//public DateTime DueDate { get; set; }
+		private decimal _remainingAmount;
+		private decimal _amountPayed;
+		private bool _isPayedOff;
+		private bool _isPayedOnce;
 		#endregion
 
 		#region - Constructors
@@ -40,7 +39,45 @@ namespace BudgetModels.Models_V1.BudgetModels
 		#endregion
 
 		#region - Full Properties
+		public decimal RemainingAmount
+		{
+			get { return _remainingAmount; }
+			set
+			{
+				_remainingAmount = value;
+				OnPropertyChanged(nameof(RemainingAmount));
+			}
+		}
 
+		public decimal AmountPayed
+		{
+			get { return _amountPayed; }
+			set
+			{
+				_amountPayed = value;
+				OnPropertyChanged(nameof(AmountPayed));
+			}
+		}
+
+		public bool IsPayedOff
+		{
+			get { return _isPayedOff; }
+			set
+			{
+				_isPayedOff = value;
+				OnPropertyChanged(nameof(IsPayedOff));
+			}
+		}
+
+		public bool IsPayedOnce
+		{
+			get { return _isPayedOnce; }
+			set
+			{
+				_isPayedOnce = value;
+				OnPropertyChanged(nameof(IsPayedOnce));
+			}
+		}
 		#endregion
 	}
 }

@@ -27,3 +27,5 @@ C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\Resources\ColorsDictionary.baml
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\Resources\StylesDictionary.baml
 C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\App.baml
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\Views\DialogWindows\AddPaystubView.g.cs
+C:\Users\Cody\source\repos\GitHub\BudgetPlanner_2.0\BudgetPlanner\BudgetPlanner_UI\obj\Debug\Views\DialogWindows\AddPaystubView.baml
