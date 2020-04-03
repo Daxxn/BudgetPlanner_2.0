@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="BudgetFactory.cs" />
     <Compile Include="DebtFactory.cs" />
-    <Compile Include="Models_V1\BaseModel.cs" />
     <Compile Include="Models_V1\BudgetModels\Interfaces\IBudget.cs" />
     <Compile Include="Models_V1\BudgetModels\BudgetBase.cs" />
     <Compile Include="Models_V1\BudgetModels\BudgetController.cs" />
@@ -60,17 +59,6 @@
   <ItemGroup>
     <Folder Include="Models_V1\DebtModels\Interfaces\" />
     <Folder Include="Models_V1\PaystubModels\" />
-    <Compile Include="Models_V1\PaystubModels\Interfaces\IPaystub.cs" />
-    <Compile Include="Models_V1\PaystubModels\PayDates.cs" />
-    <Compile Include="Models_V1\PaystubModels\Paystub.cs" />
-    <Compile Include="Models_V1\PaystubModels\PaystubCalculator.cs" />
-    <Compile Include="Models_V1\PaystubModels\PaystubSelector.cs" />
-    <Compile Include="PaystubFactory.cs" />
-    <Compile Include="PercentageCalculator.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models_V1\DebtModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
