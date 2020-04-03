@@ -1,6 +1,7 @@
 ﻿using BudgetModels;
 using BudgetModels.Models_V1.PaystubModels;
 using BudgetModels.Models_V1.PaystubModels.Interfaces;
+using BudgetPlanner_UI.CustomEventArgs;
 using BudgetPlanner_UI.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace BudgetPlanner_UI.ViewModels
 		#endregion
 
 		private ObservableCollection<IPaystub> _paystuDataList;
+		private IPaystub _selectedPaystub;
 
 		private decimal _totalGross;
 		private decimal _totalNet;
@@ -29,13 +31,14 @@ namespace BudgetPlanner_UI.ViewModels
 		private decimal _averageGross;
 		private decimal _averageNet;
 		private decimal _averageTax;
+		private decimal _averageTaxPercent;
 		#endregion
 
 		#region - Constructors
 		public PaystubViewModel( )
 		{
 			#region Paystub Testing
-			PaystubDataList = new ObservableCollection<IPaystub>(PaystubFactory.BuildTestPaystubs());
+			PaystubDataList = new ObservableCollection<IPaystub>(PaystubFactory.BuildTestPaystubs_2());
 			#endregion
 		}
 		#endregion
@@ -50,15 +53,71 @@ namespace BudgetPlanner_UI.ViewModels
 
 		public void AddOneEvent( object sender, RoutedEventArgs e )
 		{
-
+			PaystubDataList.Add(PaystubFactory.BuildPaystub());
 		}
 
-		public void DeleteOne( object sender, RoutedEventArgs e )
+		public void DeleteOneEvent( object sender, RoutedEventArgs e )
 		{
+			if (SelectedPaystub != null)
+			{
+				PaystubDataList.Remove(SelectedPaystub);
+			}
+		}
 
+		public void DataListUpdateEvent( object sender, EventArgs e )
+		{
+			SetTotals(PaystubCalculator.CalculateTotals(PaystubDataList));
+		}
+        #endregion
+
+
+        public void RunEstimateEvent( object sender, TaxEstimateEventArgs e )
+		{
+			RunEstimate(e.SelectionIndex);
+		}
+
+		public void RunAveragesEvent( object sender, RoutedEventArgs e )
+		{
+			RunAverages();
+		}
+
+		#region Caclulations
+		private void RunEstimate( int selection )
+		{
+			SetTotals(PaystubCalculator.CalculateTotals(PaystubDataList));
+			SetAverages(PaystubCalculator.CalculateAverages(PaystubDataList));
+
+			PaystubCalculator.EstimatePercentage(
+				selection,
+				PaystubDataList,
+				AverageGross,
+				AverageNet,
+				AverageTax
+			);
+		}
+
+		private void RunAverages( )
+		{
+			SetTotals(PaystubCalculator.CalculateTotals(PaystubDataList));
+			SetAverages(PaystubCalculator.CalculateAverages(PaystubDataList));
 		}
 		#endregion
 
+		#region Other Methods
+		private void SetTotals( (decimal gross, decimal net, decimal tax) result )
+		{
+			TotalGross = result.gross;
+			TotalNet = result.net;
+			TotalTax = result.tax;
+		}
+
+		private void SetAverages( (decimal gross, decimal net, decimal tax) result )
+		{
+			AverageGross = result.gross;
+			AverageNet = result.net;
+			AverageTax = result.tax;
+		}
+		#endregion
 		#endregion
 
 		#region - Full Properties
@@ -69,6 +128,16 @@ namespace BudgetPlanner_UI.ViewModels
 			{
 				_paystuDataList = value;
 				OnPropertyChanged(nameof(PaystubDataList));
+			}
+		}
+
+		public IPaystub SelectedPaystub
+		{
+			get { return _selectedPaystub; }
+			set
+			{
+				_selectedPaystub = value;
+				OnPropertyChanged(nameof(SelectedPaystub));
 			}
 		}
 
@@ -129,6 +198,16 @@ namespace BudgetPlanner_UI.ViewModels
 			{
 				_averageTax = value;
 				OnPropertyChanged(nameof(AverageTax));
+			}
+		}
+
+		public decimal AverageTaxPercent
+		{
+			get { return _averageTaxPercent; }
+			set
+			{
+				_averageTaxPercent = value;
+				OnPropertyChanged(nameof(AverageTaxPercent));
 			}
 		}
 		#endregion

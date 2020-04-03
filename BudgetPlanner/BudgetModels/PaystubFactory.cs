@@ -20,7 +20,7 @@ namespace BudgetModels
 			return new Paystub();
 		}
 
-		public static IEnumerable<IPaystub> BuildTestPaystubs( int count = 10 )
+		public static IEnumerable<IPaystub> BuildTestPaystubs_1( int count = 10 )
 		{
 			Random rng = new Random();
 			List<Paystub> output = new List<Paystub>();
@@ -38,6 +38,34 @@ namespace BudgetModels
 					NetPay = grossTemp / 2,
 					Period = new PayDates(DateTime.Now.AddDays(i), DateTime.Now.AddDays(i + 7), DateTime.Now.AddDays(i + (7 * 2)))
 				});
+			}
+
+			return output;
+		}
+
+		public static IEnumerable<IPaystub> BuildTestPaystubs_2( int count = 10 )
+		{
+			Random rng = new Random();
+			List<Paystub> output = new List<Paystub>();
+
+			for (int i = 0; i < count; i++)
+			{
+				int gross = rng.Next(1, 999);
+				int grossDecimal = rng.Next(0, 99);
+				decimal grossTemp = (decimal)gross;
+				grossTemp += (decimal)grossDecimal * (decimal)0.01;
+
+				output.Add(new Paystub
+				{
+					GrossPay = grossTemp,
+					NetPay = 0,
+					Period = new PayDates(DateTime.Now.AddDays(i), DateTime.Now.AddDays(i + 7), DateTime.Now.AddDays(i + (7 * 2)))
+				});
+			}
+
+			for (int i = 0; i < count / 4; i++)
+			{
+				output[ i ].NetPay = output[ i ].GrossPay / 2;
 			}
 
 			return output;

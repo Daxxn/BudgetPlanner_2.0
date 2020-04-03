@@ -29,7 +29,7 @@
 				<Border Grid.Row="0" Style="{StaticResource BD_Totals_Category}">
 					<Grid>
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
 						<Grid.RowDefinitions>
@@ -58,7 +58,7 @@
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="Auto"/>
-							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*" MinWidth="50" MaxWidth="75"/>
 						</Grid.ColumnDefinitions>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto"/>
@@ -110,9 +110,12 @@
 							<Grid>
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="Auto"/>
-									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="*" MinWidth="50" MaxWidth="75"/>
 								</Grid.ColumnDefinitions>
 								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
 									<RowDefinition Height="Auto"/>
 									<RowDefinition Height="Auto"/>
 									<RowDefinition Height="Auto"/>
@@ -149,6 +152,32 @@
 								<TextBlock Grid.Row="3" Grid.Column="1"
 										Style="{StaticResource TB_Totals_Result}"
 										Text="{Binding Path=AverageTax}"/>
+
+								<TextBlock Grid.Row="4" Grid.Column="0"
+										Style="{StaticResource TB_Totals_Title}">
+									Average Tax %
+								</TextBlock>
+								<TextBlock Grid.Row="4" Grid.Column="1"
+										Style="{StaticResource TB_Totals_Result}"
+										Text="{Binding Path=AverageTaxPercent}"/>
+
+								<ComboBox x:Name="EstimateSelector"
+										Grid.Row="5" Grid.ColumnSpan="2">
+									<ComboBoxItem Content="Tax" IsSelected="True"/>
+									<ComboBoxItem Content="Gross"/>
+									<ComboBoxItem Content="Net"/>
+									<ComboBoxItem Content="Auto"/>
+								</ComboBox>
+								
+								<Button Grid.Row="6" Grid.ColumnSpan="2"
+										x:Name="RunEstimateButton" Click="RunEstimate_Click" >
+									Run Estimate
+								</Button>
+
+								<Button Grid.Row="7" Grid.ColumnSpan="2"
+										x:Name="RunAveragesButton">
+									Run Averages
+								</Button>
 							</Grid>
 						</Border>
 					</Grid>
@@ -158,24 +187,28 @@
 		</Border>
 		<!--#endregion-->
 		
-		<!--#region Tax Estimate Display (Maybe) -->
-		
+		<!--#region Tax Estimate Column Display (Maybe) -->
+		<GridSplitter Grid.Column="1" Width="8" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
 		<!--#endregion-->
 		
 		<!--#region Data Display -->
 		<Border Grid.Column="2" Style="{StaticResource BD_Totals_Category}">
-			<DataGrid Grid.Column="2" x:Name="PaystubDisplayTest"
-				ItemsSource="{Binding Path=PaystubDataList}"
-				AutoGenerateColumns="False"
-				CanUserAddRows="True">
+			<DataGrid Grid.Column="2" x:Name="PaystubDisplay"
+					ItemsSource="{Binding Path=PaystubDataList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					SelectedItem="{Binding Path=SelectedPaystub, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					AutoGenerateColumns="False"
+					CanUserAddRows="True">
 				<DataGrid.Columns>
-					<DataGridTextColumn Header="Gross" Binding="{Binding Path=GrossPay}"/>
-					<DataGridTextColumn Header="Net" Binding="{Binding Path=NetPay}"/>
-					<DataGridTextColumn Header="Tax" Binding="{Binding Path=TaxDeductions}"/>
+					<DataGridTextColumn Header="Gross" Binding="{Binding Path=GrossPay,UpdateSourceTrigger=PropertyChanged}"/>
+					<DataGridTextColumn Header="Net" Binding="{Binding Path=NetPay, UpdateSourceTrigger=PropertyChanged}"/>
+					<DataGridTextColumn Header="Tax" Binding="{Binding Path=TaxDeductions, UpdateSourceTrigger=PropertyChanged}"/>
+					<DataGridTextColumn Header="Tax %" Binding="{Binding Path=TaxPercentage, UpdateSourceTrigger=PropertyChanged}"/>
+					<DataGridCheckBoxColumn Header="Estimate" Binding="{Binding Path=IsEstimated, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+					<DataGridTextColumn Header="Hours" Binding="{Binding Path=Hours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 					<DataGridTemplateColumn Header="Start Test">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
-								<DatePicker SelectedDate="{Binding Path=Period.Start}"
+								<DatePicker SelectedDate="{Binding Path=Period.Start, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 									SelectedDateFormat="Short"/>
 							</DataTemplate>
 						</DataGridTemplateColumn.CellTemplate>
@@ -183,7 +216,7 @@
 					<DataGridTemplateColumn Header="End Date">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
-								<DatePicker SelectedDate="{Binding Path=Period.End}"
+								<DatePicker SelectedDate="{Binding Path=Period.End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 									SelectedDateFormat="Short"/>
 							</DataTemplate>
 						</DataGridTemplateColumn.CellTemplate>
@@ -191,7 +224,7 @@
 					<DataGridTemplateColumn Header="Pay Date">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
-								<DatePicker SelectedDate="{Binding Path=Period.PayDate}"
+								<DatePicker SelectedDate="{Binding Path=Period.PayDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 									SelectedDateFormat="Short"/>
 							</DataTemplate>
 						</DataGridTemplateColumn.CellTemplate>

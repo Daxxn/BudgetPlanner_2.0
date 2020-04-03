@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetPlanner_UI.Views"
-		xmlns:models="clr-namespace:BudgetModels.Models_V1.BudgetModels;assembly=BudgetModels"
         mc:Ignorable="d" WindowState="Maximized"
         Title="Budget Planner" Height="650" Width="1920">
 	<Grid>

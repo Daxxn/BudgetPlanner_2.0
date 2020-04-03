@@ -4,7 +4,12 @@
     {
         decimal GrossPay { get; set; }
         decimal NetPay { get; set; }
-        PayDates Period { get; set; }
         decimal TaxDeductions { get; set; }
+        decimal TaxPercentage { get; set; }
+        double Hours { get; set; }
+        bool IsEstimated { get; set; }
+        PayDates Period { get; set; }
+
+        void EstimateTaxPercent( int selection );
     }
 }
