@@ -28,6 +28,13 @@ namespace BudgetPlanner_UI.Views
             //BudgetTab_CC.Content = UIFactory.BuildBudgetView(ShellViewModel.Instance.BudgetVM);
             BudgetTab_CC.Content = UIFactory.BuildView<BudgetView, BudgetViewModel>(ShellViewModel.Instance.BudgetVM);
             PaystubTab_CC.Content = UIFactory.BuildView<PaystubView, PaystubViewModel>(ShellViewModel.Instance.PaystubVM);
+            SetBindings();
+        }
+
+        public void SetBindings( )
+        {
+            var vm = DataContext as ShellViewModel;
+            KeyUp += vm.KeyUpEvent;
         }
     }
 }

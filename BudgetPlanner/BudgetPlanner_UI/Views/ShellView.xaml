@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetPlanner_UI.Views"
+		xmlns:models="clr-namespace:BudgetModels.Models_V1.BudgetModels;assembly=BudgetModels"
         mc:Ignorable="d"
-        Title="Budget Planner" Height="450" Width="800">
-    <Grid>
+        Title="Budget Planner" Height="650" Width="Auto">
+	<Grid>
 		<Grid.ColumnDefinitions>
 			<!--<ColumnDefinition Width="Auto"/>-->
 			<ColumnDefinition Width="*"/>
@@ -31,7 +32,7 @@
 			<TabItem Header="Paystubs">
 				<ContentControl x:Name="PaystubTab_CC"/>
 			</TabItem>
-			<TabItem Header="Depts">
+			<TabItem Header="Debts">
 				<ContentControl x:Name="DebtTab_CC"/>
 			</TabItem>
 		</TabControl>
