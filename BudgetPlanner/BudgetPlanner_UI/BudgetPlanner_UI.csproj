@@ -59,6 +59,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CustomEventArgs\FinishAddNewPaystubEventArgs.cs" />
     <Compile Include="CustomEventArgs\TaxEstimateEventArgs.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />

@@ -31,6 +31,39 @@ namespace BudgetPlanner_UI.Views.DialogWindows
         public void SetBindings( )
         {
             var vm = DataContext as AddPaystubViewModel;
+            AddNewPaystubButton.Click += vm.AddNetPaystubEvent;
+            FinishCloseButton.Click += vm.FinishCloseEvent;
+            FinishCloseButton.Click += FinishCloseEvent;
+        }
+
+        private void NewBox_GotKeyboardFocus( object sender, KeyboardFocusChangedEventArgs e )
+        {
+            var textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                if (textBox.Name.StartsWith("NewBox"))
+                {
+                    textBox.SelectAll();
+                }
+            }
+        }
+
+        private void NewBox_KeyUp( object sender, KeyEventArgs e )
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (NewBoxGross.Text.Length > 0 || NewBoxNet.Text.Length > 0 || NewBoxTax.Text.Length > 0)
+                {
+                    var vm = DataContext as AddPaystubViewModel;
+                    vm.AddNetPaystubEvent(this, null);
+                    NewBoxGross.Focus();
+                }
+            }
+        }
+
+        private void FinishCloseEvent( object sender, RoutedEventArgs e )
+        {
+            Close();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using BudgetModels.Models_V1.PaystubModels.Interfaces;
+﻿using BudgetModels;
+using BudgetModels.Models_V1.PaystubModels.Interfaces;
+using BudgetPlanner_UI.CustomEventArgs;
 using BudgetPlanner_UI.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,25 +8,50 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BudgetPlanner_UI.ViewModels
 {
     public class AddPaystubViewModel : ViewModelBase, IViewModel
 	{
 		#region - Fields & Properties
-		private double _screenWidthPos;
-		public ObservableCollection<IPaystub> _newPaystubs;
+
+		#region Events
+		public event EventHandler<FinishAddNewPaystubEventArgs> FinishEvent;
+		#endregion
+
+		private ObservableCollection<IPaystub> _newPaystubs;
+		private IPaystub _selectedPaystub;
+
+		private IPaystub _newPaystub;
+
+		private bool _replaceOldPaystubs;
 		#endregion
 
 		#region - Constructors
 		public AddPaystubViewModel( )
 		{
-			ScreenWidthPos = ShellViewModel.WindowWidth / 2;
+			NewPaystubs = new ObservableCollection<IPaystub>();
+			NewPaystub = PaystubFactory.BuildPaystub();
+			FinishEvent += ShellViewModel.Instance.PaystubVM.FinishEvent;
 		}
 		#endregion
 
 		#region - Methods
 
+		#region Event Handlers
+		public void AddNetPaystubEvent( object sender, RoutedEventArgs e )
+		{
+			NewPaystubs.Add(NewPaystub);
+			NewPaystub = PaystubFactory.BuildPaystub();
+		}
+
+		public void FinishCloseEvent( object sender, RoutedEventArgs e )
+		{
+			FinishEvent?.Invoke(this, new FinishAddNewPaystubEventArgs(NewPaystubs, ReplaceOldPaystubs));
+		}
+		#endregion
+		
 		#endregion
 
 		#region - Full Properties
@@ -38,13 +65,33 @@ namespace BudgetPlanner_UI.ViewModels
 			}
 		}
 
-		public double ScreenWidthPos
+		public IPaystub SelectedPaystub
 		{
-			get { return _screenWidthPos; }
+			get { return _selectedPaystub; }
 			set
 			{
-				_screenWidthPos = value;
-				OnPropertyChanged(nameof(ScreenWidthPos));
+				_selectedPaystub = value;
+				OnPropertyChanged(nameof(SelectedPaystub));
+			}
+		}
+
+		public IPaystub NewPaystub
+		{
+			get { return _newPaystub; }
+			set
+			{
+				_newPaystub = value;
+				OnPropertyChanged(nameof(NewPaystub));
+			}
+		}
+
+		public bool ReplaceOldPaystubs
+		{
+			get { return _replaceOldPaystubs; }
+			set
+			{
+				_replaceOldPaystubs = value;
+				OnPropertyChanged(nameof(ReplaceOldPaystubs));
 			}
 		}
 		#endregion

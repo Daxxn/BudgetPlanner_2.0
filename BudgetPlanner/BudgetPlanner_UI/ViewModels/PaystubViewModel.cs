@@ -17,11 +17,15 @@ namespace BudgetPlanner_UI.ViewModels
 	{
 		#region - Fields & Properties
 
+		#region Events
+
+		#endregion
+
 		#region Nested ViewModels
 		public AddPaystubViewModel AddPaystubVM { get; set; }
 		#endregion
 
-		private ObservableCollection<IPaystub> _paystuDataList;
+		private ObservableCollection<IPaystub> _paystubDataList;
 		private IPaystub _selectedPaystub;
 
 		private decimal _totalGross;
@@ -41,11 +45,25 @@ namespace BudgetPlanner_UI.ViewModels
 			PaystubDataList = new ObservableCollection<IPaystub>(PaystubFactory.BuildTestPaystubs_2());
 			#endregion
 		}
+
 		#endregion
 
 		#region - Methods
 
 		#region Event Handlers
+		public void FinishEvent( object sender, FinishAddNewPaystubEventArgs e )
+		{
+			if (e.ReplaceOld)
+			{
+				PaystubDataList = new ObservableCollection<IPaystub>(e.Paystubs);
+			}
+			else
+			{
+				AddToPaystubDataList(e.Paystubs);
+			}
+			DataListUpdateEvent(this, null);
+		}
+
 		public void AddManyEvent( object sender, RoutedEventArgs e )
 		{
 			AddPaystubVM = new AddPaystubViewModel();
@@ -68,8 +86,15 @@ namespace BudgetPlanner_UI.ViewModels
 		{
 			SetTotals(PaystubCalculator.CalculateTotals(PaystubDataList));
 		}
-        #endregion
+		#endregion
 
+		private void AddToPaystubDataList( IEnumerable<IPaystub> paystubs )
+		{
+			foreach (var paystub in paystubs)
+			{
+				PaystubDataList.Add(paystub);
+			}
+		}
 
         public void RunEstimateEvent( object sender, TaxEstimateEventArgs e )
 		{
@@ -123,10 +148,10 @@ namespace BudgetPlanner_UI.ViewModels
 		#region - Full Properties
 		public ObservableCollection<IPaystub> PaystubDataList
 		{
-			get { return _paystuDataList; }
+			get { return _paystubDataList; }
 			set
 			{
-				_paystuDataList = value;
+				_paystubDataList = value;
 				OnPropertyChanged(nameof(PaystubDataList));
 			}
 		}

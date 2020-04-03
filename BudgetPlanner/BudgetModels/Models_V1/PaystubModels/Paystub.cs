@@ -10,13 +10,13 @@ namespace BudgetModels.Models_V1.PaystubModels
 	public class Paystub : BaseModel, IPaystub
 	{
 		#region - Fields & Properties
-		public decimal GrossPay { get; set; }
-		public decimal NetPay { get; set; }
-		public decimal TaxDeductions { get; set; }
+		private decimal _grossPay;
+		private decimal _netPay;
+		private decimal _taxDeductions;
 		private decimal _taxPercentage;
-		public double Hours { get; set; }
-		public bool IsEstimated { get; set; } = false;
-		public PayDates Period { get; set; }
+		private double _hours;
+		private bool _isEstimated = false;
+		private PayDates _period;
 		#endregion
 
 		#region - Constructors
@@ -70,6 +70,36 @@ namespace BudgetModels.Models_V1.PaystubModels
 		#endregion
 
 		#region - Full Properties
+		public decimal GrossPay
+		{
+			get { return _grossPay; }
+			set
+			{
+				_grossPay = value;
+				OnPropertyChanged(nameof(GrossPay));
+			}
+		}
+
+		public decimal NetPay
+		{
+			get { return _netPay; }
+			set
+			{
+				_netPay = value;
+				OnPropertyChanged(nameof(NetPay));
+			}
+		}
+
+		public decimal TaxDeductions
+		{
+			get { return _taxDeductions; }
+			set
+			{
+				_taxDeductions = value;
+				OnPropertyChanged(nameof(TaxDeductions));
+			}
+		}
+
 		public decimal TaxPercentage
 		{
 			get { return _taxPercentage; }
@@ -77,6 +107,36 @@ namespace BudgetModels.Models_V1.PaystubModels
 			{
 				_taxPercentage = value;
 				OnPropertyChanged(nameof(TaxPercentage));
+			}
+		}
+
+		public double Hours
+		{
+			get { return _hours; }
+			set
+			{
+				_hours = value;
+				OnPropertyChanged(nameof(Hours));
+			}
+		}
+
+		public bool IsEstimated
+		{
+			get { return _isEstimated; }
+			set
+			{
+				_isEstimated = value;
+				OnPropertyChanged(nameof(IsEstimated));
+			}
+		}
+
+		public PayDates Period
+		{
+			get { return _period; }
+			set
+			{
+				_period = value;
+				OnPropertyChanged(nameof(Period));
 			}
 		}
 		#endregion
