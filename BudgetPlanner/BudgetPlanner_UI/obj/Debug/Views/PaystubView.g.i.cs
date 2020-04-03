@@ -40,6 +40,62 @@ namespace BudgetPlanner_UI.Views {
     /// </summary>
     public partial class PaystubView : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
+        
+        #line 43 "..\..\..\Views\PaystubView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button AddMany;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 46 "..\..\..\Views\PaystubView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button AddOne;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 49 "..\..\..\Views\PaystubView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button DeleteOne;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 164 "..\..\..\Views\PaystubView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBox EstimateSelector;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 173 "..\..\..\Views\PaystubView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button RunEstimateButton;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 178 "..\..\..\Views\PaystubView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button RunAveragesButton;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 196 "..\..\..\Views\PaystubView.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.DataGrid PaystubDisplay;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -68,6 +124,36 @@ namespace BudgetPlanner_UI.Views {
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {
+            switch (connectionId)
+            {
+            case 1:
+            this.AddMany = ((System.Windows.Controls.Button)(target));
+            return;
+            case 2:
+            this.AddOne = ((System.Windows.Controls.Button)(target));
+            return;
+            case 3:
+            this.DeleteOne = ((System.Windows.Controls.Button)(target));
+            return;
+            case 4:
+            this.EstimateSelector = ((System.Windows.Controls.ComboBox)(target));
+            return;
+            case 5:
+            this.RunEstimateButton = ((System.Windows.Controls.Button)(target));
+            
+            #line 173 "..\..\..\Views\PaystubView.xaml"
+            this.RunEstimateButton.Click += new System.Windows.RoutedEventHandler(this.RunEstimate_Click);
+            
+            #line default
+            #line hidden
+            return;
+            case 6:
+            this.RunAveragesButton = ((System.Windows.Controls.Button)(target));
+            return;
+            case 7:
+            this.PaystubDisplay = ((System.Windows.Controls.DataGrid)(target));
+            return;
+            }
             this._contentLoaded = true;
         }
     }
