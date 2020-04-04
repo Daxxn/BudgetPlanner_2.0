@@ -31,7 +31,7 @@
 			<TabItem Header="Paystubs">
 				<ContentControl x:Name="PaystubTab_CC"/>
 			</TabItem>
-			<TabItem Header="Debts">
+			<TabItem Header="Debts" IsSelected="True">
 				<ContentControl x:Name="DebtTab_CC"/>
 			</TabItem>
 		</TabControl>

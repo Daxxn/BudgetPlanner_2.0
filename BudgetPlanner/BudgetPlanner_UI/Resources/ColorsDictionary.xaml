@@ -6,7 +6,7 @@
 	<!--#endregion-->
 	
 	<!--#region TextBoxes -->
-	
+	<SolidColorBrush x:Key="TX_Background_DB_Tree_Main" Color="#FFB0EAFF"/>
 	<!--#endregion-->
 	
 	<!--#region Borders -->
@@ -14,5 +14,12 @@
 	<SolidColorBrush x:Key="BD_Brush_Totals_View" Color="#FF18DAB7"/>
 	<SolidColorBrush x:Key="BD_Background_totals_View" Color="#7FDEF2FF"/>
 	<SolidColorBrush x:Key="BD_Brush_Upcoming_Element" Color="#FF4EB2A0"/>
+	<SolidColorBrush x:Key="BD_Brush_DE_Tree_Main" Color="#FFAEE6DC"/>
+	<SolidColorBrush x:Key="BD_Background_DE_Tree_Main" Color="#B2DEF2FF"/>
+	<SolidColorBrush x:Key="BD_Brush_DE_Tree_Sub" Color="#FF36EAC9"/>
+	<!--#endregion-->
+
+	<!--#region DatePickers -->
+	<SolidColorBrush x:Key="DP_DB_Tree_Main" Color="#FFD4DCE2"/>
 	<!--#endregion-->
 </ResourceDictionary>

@@ -31,6 +31,22 @@ namespace BudgetPlanner_UI.Views
 
         public void SetBindings( )
         {
+            var vm = DataContext as DebtViewModel;
+
+            #region Button Events
+            AddDebtButton.Click += vm.AddDebtEvent;
+            DeleteDebtButton.Click += vm.DeleteDebtEvent;
+            AddDebtItemButton.Click += vm.AddDebtItemEvent;
+            DeleteDebtItemButton.Click += vm.DeleteDebtItemEvent;
+            #endregion
+
+            DebtTreeMain.SelectedItemChanged += vm.SelectedMainValueChangedEvent;
+        }
+
+        private void TreeView_SelectedItemChanged( object sender, RoutedPropertyChangedEventArgs<object> e )
+        {
+            var vm = DataContext as DebtViewModel;
+            vm.SelectedHistoryValueChangedEvent(sender, e);
         }
     }
 }

@@ -28,6 +28,7 @@ namespace BudgetPlanner_UI.Views
             //BudgetTab_CC.Content = UIFactory.BuildBudgetView(ShellViewModel.Instance.BudgetVM);
             BudgetTab_CC.Content = UIFactory.BuildView<BudgetView, BudgetViewModel>(ShellViewModel.Instance.BudgetVM);
             PaystubTab_CC.Content = UIFactory.BuildView<PaystubView, PaystubViewModel>(ShellViewModel.Instance.PaystubVM);
+            DebtTab_CC.Content = UIFactory.BuildView<DebtView, DebtViewModel>(ShellViewModel.Instance.DebtVM);
             SetBindings();
             ShellViewModel.WindowWidth = ActualWidth;
         }
