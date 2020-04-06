@@ -62,7 +62,8 @@
 		</Border>
 
 		<Border Grid.Column="1">
-			<TreeView x:Name="DebtTreeMain"
+			<!--#region Test 1-->
+			<!--<TreeView x:Name="DebtTreeMain"
 					ItemsSource="{Binding Path=DebtDataList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 					SelectedValuePath="{Binding Source=SelectedDebt}"
 					Grid.IsSharedSizeScope="True">
@@ -145,7 +146,57 @@
 						</Border>
 					</DataTemplate>
 				</TreeView.ItemTemplate>
+			</TreeView>-->
+			<!--#endregion-->
+
+			<!--#region Test 2 -->
+			<TreeView x:Name="DebtTreeMain"
+					ItemsSource="{Binding Path=DebtDataList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					SelectedValuePath="{Binding Source=SelectedDebt}"
+					Grid.IsSharedSizeScope="True">
+				<TreeView.ItemTemplate>
+					<DataTemplate>
+						<TreeViewItem Header="Debt">
+							<Border>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition Width="Auto"/>
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto"/>
+										<RowDefinition Height="Auto"/>
+									</Grid.RowDefinitions>
+
+									<TextBlock Text="{Binding Path=Debter}"/>
+									<TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=AmountOwed}"/>
+									<TreeViewItem Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+											Header="Payment History">
+										<ListView ItemsSource="{Binding Path=DebtHistory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+											<ListView.ItemTemplate>
+												<DataTemplate>
+													<Border>
+														<Grid>
+															<Grid.ColumnDefinitions>
+																<ColumnDefinition Width="Auto"/>
+																<ColumnDefinition Width="Auto"/>
+																<ColumnDefinition Width="Auto"/>
+															</Grid.ColumnDefinitions>
+
+															<TextBlock Text="{Binding Path=AmountPayed}"/>
+														</Grid>
+													</Border>
+												</DataTemplate>
+											</ListView.ItemTemplate>
+										</ListView>
+									</TreeViewItem>
+								</Grid>
+							</Border>
+						</TreeViewItem>
+					</DataTemplate>
+				</TreeView.ItemTemplate>
 			</TreeView>
+			<!--#endregion-->
 		</Border>
 	</Grid>
 </UserControl>

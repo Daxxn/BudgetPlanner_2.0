@@ -28,6 +28,14 @@ namespace BudgetModels
 			return new DebtItem();
 		}
 
+		public static IDebtItem BuildDebtItem( IDebt parent )
+		{
+			return new DebtItem
+			{
+				Parent = parent
+			};
+		}
+
 		public static IEnumerable<IDebt> BuildTestDebts( int count = 5 )
 		{
 			return new List<IDebt>()
@@ -39,7 +47,7 @@ namespace BudgetModels
 					DueDate = null,
 					DebtHistory = new ObservableCollection<IDebtItem>()
 					{
-						new DebtItem
+						new DebtItem()
 						{
 							AmountPayed = 383.40M,
 							DatePayed = new DateTime(2020,3,24).Date
@@ -71,6 +79,20 @@ namespace BudgetModels
 					}
 				}
 			};
+		}
+
+		public static IEnumerable<IDebtItem> BuildDebtHistoryTest_1( IDebt debt, int historyCount )
+		{
+			debt.DebtHistory = new ObservableCollection<IDebtItem>();
+			for (int i = 0; i < historyCount; i++)
+			{
+				
+				new DebtItem()
+				{
+					
+					Parent = debt
+				};
+			}
 		}
 		#endregion
 

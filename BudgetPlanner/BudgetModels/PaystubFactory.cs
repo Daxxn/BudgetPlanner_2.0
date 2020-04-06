@@ -27,10 +27,11 @@ namespace BudgetModels
 
 			for (int i = 0; i < count; i++)
 			{
-				int gross = rng.Next(1, 999);
-				int grossDecimal = rng.Next(0, 99);
-				decimal grossTemp = (decimal)gross;
-				grossTemp += (decimal)grossDecimal * (decimal)0.01;
+				//int gross = rng.Next(1, 999);
+				//int grossDecimal = rng.Next(0, 99);
+				//decimal grossTemp = (decimal)gross;
+				//grossTemp += (decimal)grossDecimal * (decimal)0.01;
+				decimal grossTemp = RandomGenerator.GeterateDecimal(1, 999, 99, 0.01M);
 
 				output.Add(new Paystub
 				{

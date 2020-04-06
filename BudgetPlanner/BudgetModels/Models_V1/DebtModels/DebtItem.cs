@@ -9,8 +9,9 @@ namespace BudgetModels.Models_V1.DebtModels
 	public class DebtItem : BaseModel, IDebtItem
 	{
 		#region - Fields & Properties
-		private decimal _amountPayed { get; set; }
-		private DateTime _datePayed { get; set; }
+		private IDebt _parent;
+		private decimal _amountPayed;
+		private DateTime _datePayed;
 		#endregion
 
 		#region - Constructors
@@ -22,6 +23,16 @@ namespace BudgetModels.Models_V1.DebtModels
 		#endregion
 
 		#region - Full Properties
+		public IDebt Parent
+		{
+			get { return _parent; }
+			set
+			{
+				_parent = value;
+				OnPropertyChanged(nameof(Parent));
+			}
+		}
+
 		public decimal AmountPayed
 		{
 			get { return _amountPayed; }
