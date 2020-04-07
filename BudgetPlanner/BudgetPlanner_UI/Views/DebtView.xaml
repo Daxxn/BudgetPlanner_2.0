@@ -61,7 +61,7 @@
 			</Grid>
 		</Border>
 
-		<Border Grid.Column="1">
+		<Border Grid.Column="1" Style="{StaticResource BD_DE_Tree_Main}">
 			<!--#region Test 1-->
 			<!--<TreeView x:Name="DebtTreeMain"
 					ItemsSource="{Binding Path=DebtDataList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -150,40 +150,82 @@
 			<!--#endregion-->
 
 			<!--#region Test 2 -->
-			<TreeView x:Name="DebtTreeMain"
+			<TreeView x:Name="DebtTreeMain" 
 					ItemsSource="{Binding Path=DebtDataList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 					SelectedValuePath="{Binding Source=SelectedDebt}"
 					Grid.IsSharedSizeScope="True">
 				<TreeView.ItemTemplate>
 					<DataTemplate>
 						<TreeViewItem Header="Debt">
-							<Border>
+							<Border Style="{StaticResource BD_DE_Tree_Main}">
 								<Grid>
 									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="Auto"/>
-										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition SharedSizeGroup="DebterTitle"/>
+										<ColumnDefinition SharedSizeGroup="Debter"/>
+										<ColumnDefinition SharedSizeGroup="AmountTitle"/>
+										<ColumnDefinition SharedSizeGroup="Amount"/>
+										<ColumnDefinition SharedSizeGroup="DueDateTitle"/>
+										<ColumnDefinition SharedSizeGroup="DueDate"/>
 									</Grid.ColumnDefinitions>
 									<Grid.RowDefinitions>
 										<RowDefinition Height="Auto"/>
 										<RowDefinition Height="Auto"/>
 									</Grid.RowDefinitions>
 
-									<TextBlock Text="{Binding Path=Debter}"/>
-									<TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Path=AmountOwed}"/>
-									<TreeViewItem Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+									<TextBlock Grid.Column="0"
+											Style="{StaticResource TB_DB_Tree_Main}">
+										Debter
+									</TextBlock>
+									<TextBox Grid.Column="1"
+											Style="{StaticResource TX_DB_Tree_Main}"
+											 Text="{Binding Path=Debter}"/>
+									
+									<TextBlock Grid.Column="2"
+											Style="{StaticResource TB_DB_Tree_Main}">
+										Amount
+									</TextBlock>
+									<TextBox Grid.Column="3" Grid.Row="0"
+											Style="{StaticResource TX_DB_Tree_Main}"
+											 Text="{Binding Path=AmountOwed}"/>
+									
+									<TextBlock Grid.Column="4"
+											Style="{StaticResource TB_DB_Tree_Main}">
+										Due Date
+									</TextBlock>
+									<DatePicker Grid.Column="5"
+											Style="{StaticResource DP_DE_Tree_Main}"
+											SelectedDate="{Binding Path=DueDate}"/>
+									
+									<TreeViewItem Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6"
 											Header="Payment History">
-										<ListView ItemsSource="{Binding Path=DebtHistory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+										<ListView ItemsSource="{Binding Path=DebtHistory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+												SelectedItem="{Binding Path=SelectedDebtHistory, UpdateSourceTrigger=PropertyChanged}">
 											<ListView.ItemTemplate>
 												<DataTemplate>
-													<Border>
+													<Border Style="{StaticResource BD_DE_Tree_Item}">
 														<Grid>
 															<Grid.ColumnDefinitions>
-																<ColumnDefinition Width="Auto"/>
-																<ColumnDefinition Width="Auto"/>
-																<ColumnDefinition Width="Auto"/>
+																<ColumnDefinition SharedSizeGroup="PaymentTitle"/>
+																<ColumnDefinition SharedSizeGroup="Payment"/>
+																<ColumnDefinition SharedSizeGroup="PayDateTitle"/>
+																<ColumnDefinition SharedSizeGroup="PayDate"/>
 															</Grid.ColumnDefinitions>
 
-															<TextBlock Text="{Binding Path=AmountPayed}"/>
+															<TextBlock Grid.Column="0"
+																	Style="{StaticResource TB_DB_Tree_Sub}">
+																Payment
+															</TextBlock>
+															<TextBox Grid.Column="1"
+																	Style="{StaticResource TX_DB_Tree_Sub}"
+																	 Text="{Binding Path=AmountPayed}"/>
+															
+															<TextBlock Grid.Column="2"
+																	Style="{StaticResource TB_DB_Tree_Sub}">
+																Date Payed
+															</TextBlock>
+															<DatePicker Grid.Column="3"
+																	Style="{StaticResource DP_DE_Tree_Sub}"
+																	SelectedDate="{Binding Path=DatePayed}"/>
 														</Grid>
 													</Border>
 												</DataTemplate>

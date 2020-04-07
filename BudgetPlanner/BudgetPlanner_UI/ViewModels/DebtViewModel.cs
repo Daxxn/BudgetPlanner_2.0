@@ -32,7 +32,9 @@ namespace BudgetPlanner_UI.ViewModels
 		#region Event Handlers
 		public void AddDebtEvent( object sender, RoutedEventArgs e )
 		{
-			DebtDataList.Add(DebtFactory.BuildDebt());
+			IDebt temp = DebtFactory.BuildDebt();
+			DebtDataList.Add(temp);
+			SelectedDebt = temp;
 		}
 
 		public void DeleteDebtEvent( object sender, RoutedEventArgs e )
@@ -42,36 +44,25 @@ namespace BudgetPlanner_UI.ViewModels
 
 		public void AddDebtItemEvent( object sender, RoutedEventArgs e )
 		{
-			int index = DebtDataList.IndexOf(SelectedDebt);
-			DebtDataList[ index ].DebtHistory.Add(DebtFactory.BuildDebtItem());
-			//SelectedDebt.DebtHistory.Prepend(DebtFactory.BuildDebtItem());
-			//SelectedDebt.DebtHistory.Add(DebtFactory.BuildDebtItem());
-			//SelectedDebtHistory.Prepend(DebtFactory.BuildDebtItem());
+			if (SelectedDebt != null)
+			{
+				IDebtItem temp = DebtFactory.BuildDebtItem();
+				SelectedDebt.DebtHistory.Add(temp);
+				SelectedDebt.SelectedDebtHistory = temp;
+			}
 		}
 
 		public void DeleteDebtItemEvent( object sender, RoutedEventArgs e )
 		{
-			SelectedDebt.DebtHistory.Remove(SelectedDebtHistory);
+			SelectedDebt.DebtHistory.Remove(SelectedDebt.SelectedDebtHistory);
 		}
 
 		public void SelectedMainValueChangedEvent( object sender, RoutedPropertyChangedEventArgs<object> e )
 		{
 			if (e.NewValue != null)
 			{
-				if (e.NewValue.GetType().Name == "Debt")
-				{
-					SelectedDebt = e.NewValue as IDebt;
-				}
-				else if (e.NewValue.GetType().Name == "DebtItem")
-				{
-					SelectedDebtHistory = e.NewValue as IDebtItem;
-				}
+				SelectedDebt = e.NewValue as IDebt;
 			}
-		}
-
-		public void SelectedHistoryValueChangedEvent( object sender, RoutedPropertyChangedEventArgs<object> e )
-		{
-			SelectedDebtHistory = e.NewValue as IDebtItem;
 		}
 		#endregion
 		#endregion

@@ -80,20 +80,6 @@ namespace BudgetModels
 				}
 			};
 		}
-
-		public static IEnumerable<IDebtItem> BuildDebtHistoryTest_1( IDebt debt, int historyCount )
-		{
-			debt.DebtHistory = new ObservableCollection<IDebtItem>();
-			for (int i = 0; i < historyCount; i++)
-			{
-				
-				new DebtItem()
-				{
-					
-					Parent = debt
-				};
-			}
-		}
 		#endregion
 
 		#region - Full Properties

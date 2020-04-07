@@ -42,11 +42,5 @@ namespace BudgetPlanner_UI.Views
 
             DebtTreeMain.SelectedItemChanged += vm.SelectedMainValueChangedEvent;
         }
-
-        private void TreeView_SelectedItemChanged( object sender, RoutedPropertyChangedEventArgs<object> e )
-        {
-            var vm = DataContext as DebtViewModel;
-            vm.SelectedHistoryValueChangedEvent(sender, e);
-        }
     }
 }

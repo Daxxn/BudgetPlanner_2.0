@@ -55,8 +55,8 @@
     <Compile Include="Models_V1\BudgetModels\PayPeriod.cs" />
     <Compile Include="Models_V1\DebtModels\Debt.cs" />
     <Compile Include="Models_V1\DebtModels\DebtItem.cs" />
-    <Compile Include="Models_V1\DebtModels\IDebt.cs" />
-    <Compile Include="Models_V1\DebtModels\IDebtItem.cs" />
+    <Compile Include="Models_V1\DebtModels\Interfaces\IDebt.cs" />
+    <Compile Include="Models_V1\DebtModels\Interfaces\IDebtItem.cs" />
     <Compile Include="Models_V1\PaystubModels\Interfaces\IPaystub.cs" />
     <Compile Include="Models_V1\PaystubModels\PayDates.cs" />
     <Compile Include="Models_V1\PaystubModels\Paystub.cs" />
@@ -67,8 +67,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models_V1\DebtModels\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

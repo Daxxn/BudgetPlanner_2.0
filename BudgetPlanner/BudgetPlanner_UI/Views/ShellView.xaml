@@ -23,7 +23,13 @@
 				<MenuItem x:Name="SaveMenu" Header="Save"/>
 				<MenuItem x:Name="SaveAsMenu" Header="Save As"/>
 			</MenuItem>
+			<MenuItem Header="Settings">
+				<MenuItem x:Name="BudgetSettingsMenu" Header="Budget Settings"/>
+				<MenuItem x:Name="PaystubSettingsMenu" Header="Paystub Settings"/>
+				<MenuItem x:Name="DebtSettingsMenu" Header="Debt Settings"/>
+			</MenuItem>
 		</Menu>
+		
 		<TabControl TabStripPlacement="Top" Grid.Row="1">
 			<TabItem Header="Budget">
 				<ContentControl x:Name="BudgetTab_CC"/>

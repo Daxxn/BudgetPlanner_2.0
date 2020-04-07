@@ -9,6 +9,7 @@ namespace BudgetModels.Models_V1.DebtModels
         decimal AmountOwed { get; set; }
         string Debter { get; set; }
         ObservableCollection<IDebtItem> DebtHistory { get; set; }
+        IDebtItem SelectedDebtHistory { get; set; }
         DateTime? DueDate { get; set; }
     }
 }

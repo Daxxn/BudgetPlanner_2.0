@@ -109,4 +109,26 @@
 		
 	</Style>
 	<!--#endregion-->
+
+	<!--#region TreeViewItems -->
+	<!--Doesnt Work-->
+	<!--<Style TargetType="TreeViewItem" x:Key="TV_DE_Tree_Main">
+		<Style.Triggers>
+			<Trigger Property="IsSelected" Value="True">
+				<Setter Property="Background" Value="Red"/>
+			</Trigger>
+			<Trigger Property="IsSelected" Value="False">
+				<Setter Property="Background" Value="Green"/>
+			</Trigger>
+		</Style.Triggers>
+		--><!--<Setter Property="Selector.Background" Value="Beige"/>--><!--
+	</Style>-->
+	<!--#endregion-->
+
+	<!--#region TreeViews -->
+	<!--Doesnt Work-->
+	<!--<Style TargetType="TreeView" x:Key="TR_DE_Tree">
+		<Setter Property="ItemsControl.Sele" Value="Red"/>
+	</Style>-->
+	<!--#endregion-->
 </ResourceDictionary>

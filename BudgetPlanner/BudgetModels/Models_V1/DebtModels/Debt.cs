@@ -14,6 +14,7 @@ namespace BudgetModels.Models_V1.DebtModels
 		private decimal _amountOwed;
 		private DateTime? _dueDate;
 		private ObservableCollection<IDebtItem> _debtHistory;
+		private IDebtItem _selectedDebtHistory;
 		#endregion
 
 		#region - Constructors
@@ -62,6 +63,16 @@ namespace BudgetModels.Models_V1.DebtModels
 			{
 				_debtHistory = value;
 				OnPropertyChanged(nameof(DebtHistory));
+			}
+		}
+
+		public IDebtItem SelectedDebtHistory
+		{
+			get { return _selectedDebtHistory; }
+			set
+			{
+				_selectedDebtHistory = value;
+				OnPropertyChanged(nameof(SelectedDebtHistory));
 			}
 		}
 		#endregion
