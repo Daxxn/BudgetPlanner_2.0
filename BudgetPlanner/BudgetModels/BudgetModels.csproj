@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BudgetFactory.cs" />
+    <Compile Include="DebtFactory.cs" />
+    <Compile Include="Models_V1\BaseModel.cs" />
     <Compile Include="Models_V1\BudgetModels\Interfaces\IBudget.cs" />
     <Compile Include="Models_V1\BudgetModels\BudgetBase.cs" />
     <Compile Include="Models_V1\BudgetModels\BudgetController.cs" />
@@ -51,11 +53,20 @@
     <Compile Include="Models_V1\BudgetModels\Interfaces\IBudgetBase.cs" />
     <Compile Include="Models_V1\BudgetModels\Income.cs" />
     <Compile Include="Models_V1\BudgetModels\PayPeriod.cs" />
+    <Compile Include="Models_V1\DebtModels\Debt.cs" />
+    <Compile Include="Models_V1\DebtModels\DebtItem.cs" />
+    <Compile Include="Models_V1\DebtModels\Interfaces\IDebt.cs" />
+    <Compile Include="Models_V1\DebtModels\Interfaces\IDebtItem.cs" />
+    <Compile Include="Models_V1\PaystubModels\Interfaces\IPaystub.cs" />
+    <Compile Include="Models_V1\PaystubModels\PayDates.cs" />
+    <Compile Include="Models_V1\PaystubModels\Paystub.cs" />
+    <Compile Include="Models_V1\PaystubModels\PaystubCalculator.cs" />
+    <Compile Include="Models_V1\PaystubModels\PaystubSelector.cs" />
+    <Compile Include="PaystubFactory.cs" />
+    <Compile Include="PercentageCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomGenerator.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models_V1\DebtModels\" />
-    <Folder Include="Models_V1\PaystubModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

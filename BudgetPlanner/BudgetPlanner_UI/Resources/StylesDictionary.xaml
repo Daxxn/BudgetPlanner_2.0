@@ -32,8 +32,33 @@
 	<Style TargetType="TextBlock" BasedOn="{StaticResource TB_Upcoming_Name}" x:Key="TB_Upcoming_Element">
 		<Setter Property="Margin" Value="2,0,6,0"/>
 	</Style>
+
+	<Style TargetType="TextBlock" x:Key="TB_DB_Tree_Main">
+		<Setter Property="Margin" Value="0,0,2,0"/>
+		<Setter Property="Padding" Value="0,0,0,1"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<Style TargetType="TextBlock" x:Key="TB_DB_Tree_Sub" BasedOn="{StaticResource TB_DB_Tree_Main}">
+		<Setter Property="Margin" Value="2,0,0,0"/>
+		<Setter Property="Padding" Value="0,0,0,0"/>
+	</Style>
 	<!--#endregion-->
-	
+
+	<!--#region TextBoxes -->
+	<Style TargetType="TextBox" x:Key="TX_DB_Tree_Main">
+		<Setter Property="Background" Value="{StaticResource TX_Background_DB_Tree_Main}"/>
+		<Setter Property="Margin" Value="2,0,6,0"/>
+		<Setter Property="Padding" Value="2,0,2,0"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+	</Style>
+
+	<Style TargetType="TextBox" x:Key="TX_DB_Tree_Sub" BasedOn="{StaticResource TX_DB_Tree_Main}">
+		<Setter Property="Margin" Value="2,0,6,0"/>
+	</Style>
+	<!--#endregion-->
+
 	<!--#region Borders -->
 	<Style TargetType="Border" x:Key="BD_Totals_Category">
 		<Setter Property="BorderBrush" Value="{StaticResource BD_Brush_Totals_Category}"/>
@@ -54,5 +79,56 @@
 		<Setter Property="BorderThickness" Value="1"/>
 		<Setter Property="Margin" Value="2,1,1,2"/>
 	</Style>
+
+	<Style TargetType="Border" x:Key="BD_DE_Tree_Main">
+		<Setter Property="BorderBrush" Value="{StaticResource BD_Brush_DE_Tree_Main}"/>
+		<Setter Property="Background" Value="{StaticResource BD_Background_DE_Tree_Main}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="Margin" Value="2"/>
+		<Setter Property="Padding" Value="2"/>
+	</Style>
+
+	<Style TargetType="Border" x:Key="BD_DE_Tree_Item">
+		<Setter Property="BorderBrush" Value="{StaticResource BD_Brush_DE_Tree_Sub}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Margin" Value="2"/>
+		<Setter Property="Padding" Value="2"/>
+	</Style>
+	<!--#endregion-->
+
+	<!--#region DatePickers -->
+	<Style TargetType="DatePicker" x:Key="DP_DE_Tree_Main">
+		<Setter Property="SelectedDateFormat" Value="Short"/>
+		<Setter Property="BorderBrush" Value="{StaticResource DP_DB_Tree_Main}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Margin" Value="0,0,0,0"/>
+		<Setter Property="Padding" Value="0,0,0,0"/>
+	</Style>
+
+	<Style TargetType="DatePicker" x:Key="DP_DE_Tree_Sub" BasedOn="{StaticResource DP_DE_Tree_Main}">
+		
+	</Style>
+	<!--#endregion-->
+
+	<!--#region TreeViewItems -->
+	<!--Doesnt Work-->
+	<!--<Style TargetType="TreeViewItem" x:Key="TV_DE_Tree_Main">
+		<Style.Triggers>
+			<Trigger Property="IsSelected" Value="True">
+				<Setter Property="Background" Value="Red"/>
+			</Trigger>
+			<Trigger Property="IsSelected" Value="False">
+				<Setter Property="Background" Value="Green"/>
+			</Trigger>
+		</Style.Triggers>
+		--><!--<Setter Property="Selector.Background" Value="Beige"/>--><!--
+	</Style>-->
+	<!--#endregion-->
+
+	<!--#region TreeViews -->
+	<!--Doesnt Work-->
+	<!--<Style TargetType="TreeView" x:Key="TR_DE_Tree">
+		<Setter Property="ItemsControl.Sele" Value="Red"/>
+	</Style>-->
 	<!--#endregion-->
 </ResourceDictionary>

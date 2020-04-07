@@ -1,5 +1,7 @@
-﻿using BudgetPlanner_UI.Interfaces;
+﻿using BudgetPlanner_UI.CustomEventArgs;
+using BudgetPlanner_UI.Interfaces;
 using BudgetPlanner_UI.ViewModels;
+using BudgetPlanner_UI.Views.DialogWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace BudgetPlanner_UI.Views
     /// </summary>
     public partial class PaystubView : UserControl, IView
     {
+        public event EventHandler<TaxEstimateEventArgs> EstimateEvent;
         public PaystubView( PaystubViewModel vm )
         {
             InitializeComponent();
@@ -31,6 +34,29 @@ namespace BudgetPlanner_UI.Views
 
         public void SetBindings( )
         {
+            var vm = DataContext as PaystubViewModel;
+            AddMany.Click += vm.AddManyEvent;
+            AddMany.Click += AddManyClick;
+            AddOne.Click += vm.AddOneEvent;
+            DeleteOne.Click += vm.DeleteOneEvent;
+            EstimateEvent += vm.RunEstimateEvent;
+            RunAveragesButton.Click += vm.RunAveragesEvent;
+
+            PaystubDisplay.CurrentCellChanged += vm.DataListUpdateEvent;
+            PaystubDisplay.Loaded += vm.DataListUpdateEvent;
+        }
+
+        public void RunEstimate_Click( object sender, RoutedEventArgs e )
+        {
+            EstimateEvent.Invoke(sender, new TaxEstimateEventArgs(EstimateSelector.SelectedIndex));
+        }
+
+        private void AddManyClick( object sender, RoutedEventArgs e )
+        {
+            var vm = DataContext as PaystubViewModel;
+            var addManyWindow = new AddPaystubView(vm.AddPaystubVM);
+
+            addManyWindow.Show();
         }
     }
 }

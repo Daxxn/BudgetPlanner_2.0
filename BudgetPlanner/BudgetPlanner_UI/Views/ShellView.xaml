@@ -4,9 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetPlanner_UI.Views"
-		xmlns:models="clr-namespace:BudgetModels.Models_V1.BudgetModels;assembly=BudgetModels"
-        mc:Ignorable="d"
-        Title="Budget Planner" Height="650" Width="Auto">
+        mc:Ignorable="d" WindowState="Maximized"
+        Title="Budget Planner" Height="650" Width="1920">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<!--<ColumnDefinition Width="Auto"/>-->
@@ -24,7 +23,13 @@
 				<MenuItem x:Name="SaveMenu" Header="Save"/>
 				<MenuItem x:Name="SaveAsMenu" Header="Save As"/>
 			</MenuItem>
+			<MenuItem Header="Settings">
+				<MenuItem x:Name="BudgetSettingsMenu" Header="Budget Settings"/>
+				<MenuItem x:Name="PaystubSettingsMenu" Header="Paystub Settings"/>
+				<MenuItem x:Name="DebtSettingsMenu" Header="Debt Settings"/>
+			</MenuItem>
 		</Menu>
+		
 		<TabControl TabStripPlacement="Top" Grid.Row="1">
 			<TabItem Header="Budget">
 				<ContentControl x:Name="BudgetTab_CC"/>
@@ -32,7 +37,7 @@
 			<TabItem Header="Paystubs">
 				<ContentControl x:Name="PaystubTab_CC"/>
 			</TabItem>
-			<TabItem Header="Debts">
+			<TabItem Header="Debts" IsSelected="True">
 				<ContentControl x:Name="DebtTab_CC"/>
 			</TabItem>
 		</TabControl>

@@ -59,9 +59,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CustomEventArgs\FinishAddNewPaystubEventArgs.cs" />
+    <Compile Include="CustomEventArgs\TaxEstimateEventArgs.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="UIFactory.cs" />
+    <Compile Include="ViewModels\AddPaystubViewModel.cs" />
     <Compile Include="ViewModels\BudgetViewModel.cs" />
     <Compile Include="ViewModels\DebtViewModel.cs" />
     <Compile Include="ViewModels\PaystubViewModel.cs" />
@@ -72,6 +75,9 @@
     </Compile>
     <Compile Include="Views\DebtView.xaml.cs">
       <DependentUpon>DebtView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogWindows\AddPaystubView.xaml.cs">
+      <DependentUpon>AddPaystubView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PaystubView.xaml.cs">
       <DependentUpon>PaystubView.xaml</DependentUpon>
@@ -120,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DebtView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogWindows\AddPaystubView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

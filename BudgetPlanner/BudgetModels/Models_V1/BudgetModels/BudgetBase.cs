@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace BudgetModels.Models_V1.BudgetModels
 {
-	public class BudgetBase : IBudgetBase
+	public class BudgetBase : BaseModel, IBudgetBase
 	{
 		#region - Fields & Properties
-		public int IDNumber { get; set; }
-		public string Title { get; set; }
-		public string Description { get; set; }
-		public decimal Amount { get; set; }
-		public DateTime DueDate { get; set; }
+		private int _iDNumber;
+		private string _title;
+		private string _description;
+		private decimal _amount;
+		private DateTime _dueDate;
 		#endregion
 
 		#region - Constructors
@@ -26,7 +26,55 @@ namespace BudgetModels.Models_V1.BudgetModels
 		#endregion
 
 		#region - Full Properties
+		public int IDNumber
+		{
+			get { return _iDNumber; }
+			set
+			{
+				_iDNumber = value;
+				OnPropertyChanged(nameof(IDNumber));
+			}
+		}
 
+		public string Title
+		{
+			get { return _title; }
+			set
+			{
+				_title = value;
+				OnPropertyChanged(nameof(Title));
+			}
+		}
+
+		public string Description
+		{
+			get { return _description; }
+			set
+			{
+				_description = value;
+				OnPropertyChanged(nameof(Description));
+			}
+		}
+
+		public decimal Amount
+		{
+			get { return _amount; }
+			set
+			{
+				_amount = value;
+				OnPropertyChanged(nameof(Amount));
+			}
+		}
+
+		public DateTime DueDate
+		{
+			get { return _dueDate; }
+			set
+			{
+				_dueDate = value;
+				OnPropertyChanged(nameof(DueDate));
+			}
+		}
 		#endregion
 	}
 }

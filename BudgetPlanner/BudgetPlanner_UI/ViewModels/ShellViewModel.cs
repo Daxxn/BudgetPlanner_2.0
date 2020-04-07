@@ -13,6 +13,7 @@ namespace BudgetPlanner_UI.ViewModels
 	{
 		#region - Fields & Properties
 		private static ShellViewModel _instance;
+		public static double WindowWidth { get; set; }
 
 		#region Nested Views
 		public BudgetViewModel BudgetVM { get; set; }
