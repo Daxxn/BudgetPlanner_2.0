@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StateControl.SaveControl
+namespace StateControl.StateControl
 {
     public class SaveState
 	{

@@ -1,6 +1,4 @@
-﻿using BudgetModels.Models_V1.BudgetModels.Interfaces;
-using Newtonsoft.Json;
-using StateControl.States;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,27 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StateControl.SaveControl
+namespace StateControl.StateControl
 {
-    public static class SaveController
+    public static class JsonController
 	{
-        #region - Fields & Properties
-
-        #endregion
-
         #region - Methods
-        public void Save( string path )
-        {
-
-        }
-
-		public static void BuildSaveState( IEnumerable<IIncome> incomeData, IEnumerable<IExpense> expenseData )
-		{
-
-			SaveState budgetState = new SaveState(new BudgetState(incomeData, expenseData), new PaystubState(), new DebtState());
-		}
-
-        private static string ConvertObjectToString<T>( T convertObject ) where T : class
+        public static string ConvertObjectToString<T>( T convertObject ) where T : class
         {
             try
             {
@@ -40,7 +23,7 @@ namespace StateControl.SaveControl
             }
         }
 
-        private static T ConvertStringToObject<T>( string input ) where T : new()
+        public static T ConvertStringToObject<T>( string input ) where T : new()
         {
             try
             {
@@ -52,7 +35,7 @@ namespace StateControl.SaveControl
             }
         }
 
-        private static void SaveJsonToFolder<T>( string path, string fileName, T input )
+        public static void SaveJsonToFolder<T>( string path, string fileName, T input )
         {
             try
             {
@@ -73,11 +56,53 @@ namespace StateControl.SaveControl
             }
         }
 
-        private static T OpenJsonFile<T>( string path, string name )
+        public static void SaveJson<T>( string filePath, T input )
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    JsonSerializerSettings settings = new JsonSerializerSettings()
+                    {
+                        Formatting = Formatting.Indented
+                    };
+                    JsonSerializer serializer = JsonSerializer.Create(settings);
+                    serializer.Serialize(writer, input, input.GetType());
+                    writer.Flush();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static T OpenJsonFile<T>( string path, string name )
         {
             try
             {
                 using (StreamReader reader = new StreamReader(Path.Combine(path, name + ".json")))
+                {
+                    JsonSerializerSettings settings = new JsonSerializerSettings()
+                    {
+                        Formatting = Formatting.Indented
+                    };
+                    JsonSerializer serializer = JsonSerializer.Create(settings);
+                    JsonTextReader jsonReader = new JsonTextReader(reader);
+                    return serializer.Deserialize<T>(jsonReader);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static T OpenJsonFile<T>( string filePath )
+        {
+            try
+            {
+                using (StreamReader reader = new StreamReader(filePath))
                 {
                     JsonSerializerSettings settings = new JsonSerializerSettings()
                     {

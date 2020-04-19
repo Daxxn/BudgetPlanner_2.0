@@ -1,4 +1,6 @@
-﻿using BudgetModels.Models_V1.BudgetModels.Interfaces;
+﻿using BudgetModels.Models_V1.BudgetModels;
+using BudgetModels.Models_V1.BudgetModels.Interfaces;
+using StateControl.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace StateControl.States
 {
-    public class BudgetState
+    public class BudgetState : IState
 	{
 		#region - Fields & Properties
-		public List<IIncome> IncomeData { get; set; }
-		public List<IExpense> ExpenseData { get; set; }
+		public List<Income> IncomeData { get; set; }
+		public List<Expense> ExpenseData { get; set; }
 		#endregion
 
 		#region - Constructors
-		public BudgetState( IEnumerable<IIncome> incomeData, IEnumerable<IExpense> expenseData )
+		public BudgetState( IEnumerable<Income> incomeData, IEnumerable<Expense> expenseData )
 		{
 			IncomeData = incomeData.ToList();
 			ExpenseData = expenseData.ToList();

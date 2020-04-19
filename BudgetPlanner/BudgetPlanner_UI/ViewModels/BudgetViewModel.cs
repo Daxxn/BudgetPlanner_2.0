@@ -1,6 +1,9 @@
-﻿using BudgetModels.Models_V1.BudgetModels;
+﻿using BudgetModels;
+using BudgetModels.Models_V1.BudgetModels;
 using BudgetModels.Models_V1.BudgetModels.Interfaces;
 using BudgetPlanner_UI.Interfaces;
+using StateControl.Interfaces;
+using StateControl.States;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,11 +18,11 @@ namespace BudgetPlanner_UI.ViewModels
     public class BudgetViewModel : ViewModelBase, IViewModel
 	{
 		#region - Fields & Properties
-		private ObservableCollection<Income> _incomeDataList;
-		private ObservableCollection<Expense> _expenseDataList;
+		private ObservableCollection<IIncome> _incomeDataList;
+		private ObservableCollection<IExpense> _expenseDataList;
 
-		private ObservableCollection<Income> _upcomingIncome;
-		private ObservableCollection<Expense> _upcomingExpenses;
+		private ObservableCollection<IIncome> _upcomingIncome;
+		private ObservableCollection<IExpense> _upcomingExpenses;
 
 		public IIncome _selectedIncome;
 		public IExpense _selectedExpense;
@@ -36,7 +39,7 @@ namespace BudgetPlanner_UI.ViewModels
 		public BudgetViewModel( )
 		{
 			#region Quick Binding Test
-			IncomeDataList = new ObservableCollection<Income>()
+			IncomeDataList = new ObservableCollection<IIncome>()
 			{
 				new Income
 				{
@@ -72,7 +75,7 @@ namespace BudgetPlanner_UI.ViewModels
 				}
 			};
 
-			ExpenseDataList = new ObservableCollection<Expense>()
+			ExpenseDataList = new ObservableCollection<IExpense>()
 			{
 				new Expense
 				{
@@ -137,13 +140,41 @@ namespace BudgetPlanner_UI.ViewModels
 				ExpenseCellChangedEvent(sender, e);
 			}
 		}
-        #endregion
 
-        #region Calculate Income/Expense Data
-        /// <summary>
-        /// Calculate the total for income or expense based on the bool given.
-        /// </summary>
-        public void CalculateAmountTotal( bool isIncome )
+		#region Buttons
+		public void AddIncomeEvent( object sender, EventArgs e )
+		{
+			AddIncome();
+		}
+
+		public void AddExpenseEvent( object sender, EventArgs e )
+		{
+			AddExpense();
+		}
+
+		public void DeleteIncomeEvent( object sender, EventArgs e )
+		{
+			if (SelectedIncome != null)
+			{
+				IncomeDataList.Remove(SelectedIncome);
+			}
+		}
+
+		public void DeleteExpenseEvent( object sender, EventArgs e )
+		{
+			if (SelectedExpense != null)
+			{
+				ExpenseDataList.Remove(SelectedExpense);
+			}
+		}
+		#endregion
+		#endregion
+
+		#region Calculate Income/Expense Data
+		/// <summary>
+		/// Calculate the total for income or expense based on the bool given.
+		/// </summary>
+		public void CalculateAmountTotal( bool isIncome )
 		{
 			if (isIncome)
 			{
@@ -215,7 +246,7 @@ namespace BudgetPlanner_UI.ViewModels
 		{
 			if (ExpenseDataList != null)
 			{
-				UpcomingExpenses = new ObservableCollection<Expense>(BudgetController.SortDueExpenses(ExpenseDataList, true));
+				UpcomingExpenses = new ObservableCollection<IExpense>(BudgetController.SortDueExpenses(ExpenseDataList, true));
 			}
 		}
 
@@ -223,15 +254,61 @@ namespace BudgetPlanner_UI.ViewModels
 		{
 			if (IncomeDataList != null)
 			{
-				UpcomingIncome = new ObservableCollection<Income>(BudgetController.SortDueExpenses(IncomeDataList, true));
+				UpcomingIncome = new ObservableCollection<IIncome>(BudgetController.SortDueIncome(IncomeDataList, true));
 			}
 		}
 		#endregion
 
+		public override void OpenData( IState data )
+		{
+			var budgetData = data as BudgetState;
+			IncomeDataList = new ObservableCollection<IIncome>(budgetData.IncomeData);
+			ExpenseDataList = new ObservableCollection<IExpense>(budgetData.ExpenseData);
+		}
+
+		public override void Clear( )
+		{
+			IncomeDataList = null;
+			ExpenseDataList = null;
+
+			UpcomingIncome = null;
+			UpcomingExpenses = null;
+
+			SelectedIncome = null;
+			SelectedExpense = null;
+
+			IncomeTotal = 0;
+			ExpenseTotal = 0;
+
+			IncomeRecievedTotal = 0;
+			ExpenseRemainingTotal = 0;
+
+			TotalsDifference = 0;
+			IsDiffNegative = false;
+		}
+
+        public override void New( )
+		{
+			Clear();
+			IncomeDataList = new ObservableCollection<IIncome>();
+			AddIncome();
+			ExpenseDataList = new ObservableCollection<IExpense>();
+			AddExpense();
+		}
+
+		private void AddIncome( )
+		{
+			IncomeDataList.Add(BudgetFactory.BuildIncome());
+		}
+
+		private void AddExpense( )
+		{
+			ExpenseDataList.Add(BudgetFactory.BuildExpense());
+		}
 		#endregion
 
 		#region - Full Properties
-		public ObservableCollection<Income> IncomeDataList
+		public ObservableCollection<IIncome> IncomeDataList
 		{
 			get { return _incomeDataList; }
 			set
@@ -241,7 +318,7 @@ namespace BudgetPlanner_UI.ViewModels
 			}
 		}
 
-		public ObservableCollection<Expense> ExpenseDataList
+		public ObservableCollection<IExpense> ExpenseDataList
 		{
 			get { return _expenseDataList; }
 			set
@@ -251,7 +328,7 @@ namespace BudgetPlanner_UI.ViewModels
 			}
 		}
 
-		public ObservableCollection<Income> UpcomingIncome
+		public ObservableCollection<IIncome> UpcomingIncome
 		{
 			get { return _upcomingIncome; }
 			set
@@ -261,7 +338,7 @@ namespace BudgetPlanner_UI.ViewModels
 			}
 		}
 
-		public ObservableCollection<Expense> UpcomingExpenses
+		public ObservableCollection<IExpense> UpcomingExpenses
 		{
 			get { return _upcomingExpenses; }
 			set

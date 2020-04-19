@@ -25,18 +25,20 @@ namespace BudgetPlanner_UI.Views
         {
             InitializeComponent();
             DataContext = vm;
-            //BudgetTab_CC.Content = UIFactory.BuildBudgetView(ShellViewModel.Instance.BudgetVM);
+            
             BudgetTab_CC.Content = UIFactory.BuildView<BudgetView, BudgetViewModel>(ShellViewModel.Instance.BudgetVM);
             PaystubTab_CC.Content = UIFactory.BuildView<PaystubView, PaystubViewModel>(ShellViewModel.Instance.PaystubVM);
             DebtTab_CC.Content = UIFactory.BuildView<DebtView, DebtViewModel>(ShellViewModel.Instance.DebtVM);
+            
             SetBindings();
-            ShellViewModel.WindowWidth = ActualWidth;
         }
 
         public void SetBindings( )
         {
             var vm = DataContext as ShellViewModel;
             KeyUp += vm.KeyUpEvent;
+
+            NewMenu.Click += vm.NewEvent;
             OpenMenu.Click += vm.OpenEvent;
             SaveMenu.Click += vm.SaveEvent;
             SaveAsMenu.Click += vm.SaveAsEvent;

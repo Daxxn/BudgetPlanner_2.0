@@ -3,6 +3,8 @@ using BudgetModels.Models_V1.PaystubModels;
 using BudgetModels.Models_V1.PaystubModels.Interfaces;
 using BudgetPlanner_UI.CustomEventArgs;
 using BudgetPlanner_UI.Interfaces;
+using StateControl.Interfaces;
+using StateControl.States;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -71,15 +73,12 @@ namespace BudgetPlanner_UI.ViewModels
 
 		public void AddOneEvent( object sender, RoutedEventArgs e )
 		{
-			PaystubDataList.Add(PaystubFactory.BuildPaystub());
+			Add();
 		}
 
 		public void DeleteOneEvent( object sender, RoutedEventArgs e )
 		{
-			if (SelectedPaystub != null)
-			{
-				PaystubDataList.Remove(SelectedPaystub);
-			}
+			Delete();
 		}
 
 		public void DataListUpdateEvent( object sender, EventArgs e )
@@ -141,6 +140,47 @@ namespace BudgetPlanner_UI.ViewModels
 			AverageGross = result.gross;
 			AverageNet = result.net;
 			AverageTax = result.tax;
+		}
+
+		public override void OpenData( IState data )
+		{
+			var paystubData = data as PaystubState;
+			PaystubDataList = new ObservableCollection<IPaystub>(paystubData.PaystubData);
+		}
+
+		public override void Clear( )
+		{
+			PaystubDataList = null;
+			SelectedPaystub = null;
+
+			TotalGross = 0;
+			TotalNet = 0;
+			TotalTax = 0;
+
+			AverageGross = 0;
+			AverageNet = 0;
+			AverageTax = 0;
+			AverageTaxPercent = 0;
+		}
+
+		public override void New( )
+		{
+			Clear();
+			PaystubDataList = new ObservableCollection<IPaystub>();
+			Add();
+		}
+
+		private void Add( )
+		{
+			PaystubDataList.Add(PaystubFactory.BuildPaystub());
+		}
+
+		private void Delete( )
+		{
+			if (SelectedPaystub != null)
+			{
+				PaystubDataList.Remove(SelectedPaystub);
+			}
 		}
 		#endregion
 		#endregion

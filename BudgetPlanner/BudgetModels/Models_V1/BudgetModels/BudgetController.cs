@@ -14,28 +14,13 @@ namespace BudgetModels.Models_V1.BudgetModels
 		#endregion
 
 		#region - Methods
-		public static IEnumerable<Expense> SortDueExpenses( IEnumerable<Expense> expenses )
+		public static IEnumerable<IExpense> SortDueExpenses( IEnumerable<IExpense> expenses, bool isFuture )
 		{
-			List<Expense> output = new List<Expense>();
-
-			foreach (var d in expenses)
-			{
-				if (d.DueDate.CompareTo(DateTime.Today) > 0)
-				{
-					output.Add(d);
-				}
-			}
-
-			return output.OrderBy(x => x.DueDate.Date);
-		}
-
-		public static IEnumerable<TBudget> SortDueExpenses<TBudget>( IEnumerable<TBudget> budgetData, bool isFuture ) where TBudget : BudgetBase
-		{
-			List<TBudget> output = new List<TBudget>();
+			List<IExpense> output = new List<IExpense>();
 
 			if (isFuture)
 			{
-				foreach (var d in budgetData)
+				foreach (var d in expenses)
 				{
 					if (d.DueDate.CompareTo(DateTime.Today) >= 0)
 					{
@@ -46,33 +31,89 @@ namespace BudgetModels.Models_V1.BudgetModels
 			}
 			else
 			{
-				foreach (var d in budgetData)
+				foreach (var d in expenses)
 				{
 					if (d.DueDate.CompareTo(DateTime.Today) < 0)
 					{
 						output.Add(d);
 					}
 				}
-				return output.OrderByDescending(x => x.DueDate.Date);
-			}
-
-			//return output.OrderBy(x => x.DueDate.Date);
-		}
-
-		public static IEnumerable<IExpense> SortDueExpenses( IEnumerable<IExpense> expenses )
-		{
-			List<Expense> output = new List<Expense>();
-
-			foreach (var d in expenses)
-			{
-				if (d.DueDate.CompareTo(DateTime.Today) > 0)
-				{
-					output.Add((Expense)d);
-				}
 			}
 
 			return output.OrderBy(x => x.DueDate.Date);
 		}
+		public static IEnumerable<IIncome> SortDueIncome( IEnumerable<IIncome> incomes, bool isFuture )
+		{
+			List<IIncome> output = new List<IIncome>();
+
+			if (isFuture)
+			{
+				foreach (var d in incomes)
+				{
+					if (d.DueDate.CompareTo(DateTime.Today) >= 0)
+					{
+						output.Add(d);
+					}
+				}
+				return output.OrderBy(x => x.DueDate.Date);
+			}
+			else
+			{
+				foreach (var d in incomes)
+				{
+					if (d.DueDate.CompareTo(DateTime.Today) < 0)
+					{
+						output.Add(d);
+					}
+				}
+				return output.OrderBy(x => x.DueDate.Date);
+			}
+		}
+
+		//public static IEnumerable<TBudget> SortDueExpenses<TBudget>( IEnumerable<TBudget> budgetData, bool isFuture ) where TBudget : IBudgetBase
+		//{
+		//	List<TBudget> output = new List<TBudget>();
+
+		//	if (isFuture)
+		//	{
+		//		foreach (var d in budgetData)
+		//		{
+		//			if (d.DueDate.CompareTo(DateTime.Today) >= 0)
+		//			{
+		//				output.Add(d);
+		//			}
+		//		}
+		//		return output.OrderBy(x => x.DueDate.Date);
+		//	}
+		//	else
+		//	{
+		//		foreach (var d in budgetData)
+		//		{
+		//			if (d.DueDate.CompareTo(DateTime.Today) < 0)
+		//			{
+		//				output.Add(d);
+		//			}
+		//		}
+		//		return output.OrderByDescending(x => x.DueDate.Date);
+		//	}
+
+		//	//return output.OrderBy(x => x.DueDate.Date);
+		//}
+
+		//public static IEnumerable<IExpense> SortDueExpenses( IEnumerable<IExpense> expenses )
+		//{
+		//	List<Expense> output = new List<Expense>();
+
+		//	foreach (var d in expenses)
+		//	{
+		//		if (d.DueDate.CompareTo(DateTime.Today) > 0)
+		//		{
+		//			output.Add((Expense)d);
+		//		}
+		//	}
+
+		//	return output.OrderBy(x => x.DueDate.Date);
+		//}
 		#region Example
 		public static IEnumerable<DateTime> OrderSortDates( IEnumerable<DateTime> dates )
 		{

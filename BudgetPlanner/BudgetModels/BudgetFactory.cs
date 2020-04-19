@@ -25,6 +25,16 @@ namespace BudgetModels
 			return new Expense();
 		}
 
+		public static IEnumerable<Income> ConvertIncome( IEnumerable<IIncome> income )
+		{
+			List<Income> output = new List<Income>();
+			foreach (var item in income)
+			{
+				output.Add((Income)item);
+			}
+			return output;
+		}
+
 		public static TBudget BuildBudgetItem<TBudget>(  ) where TBudget : IBudget, new()
 		{
 			return new TBudget();

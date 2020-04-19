@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StateControl.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,6 +18,21 @@ namespace BudgetPlanner_UI.ViewModels
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        public virtual void OpenData( IState state )
+        {
+            throw new Exception("OpenData Method must be overridden in derived class!");
+        }
+
+        public virtual void Clear( )
+        {
+            throw new Exception("Clear Method must be overridden in derived class!");
+        }
+
+        public virtual void New( )
+        {
+            throw new Exception("New Method must be overridden in derived class!");
         }
     }
 }

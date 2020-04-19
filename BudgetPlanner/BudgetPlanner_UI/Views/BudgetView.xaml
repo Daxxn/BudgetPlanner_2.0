@@ -36,6 +36,16 @@
 				SelectedItem="{Binding Path=SelectedIncome}">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Amount" Binding="{Binding Path=Amount, StringFormat=C2}"/>
+				<DataGridTextColumn Header="ID Number" Binding="{Binding Path=IDNumber}"/>
+				<DataGridTextColumn Header="Title" Binding="{Binding Path=Title}"/>
+				<DataGridTextColumn Header="Desc" Binding="{Binding Path=Description}"/>
+				<DataGridTemplateColumn Header="Due Date">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<DatePicker SelectedDate="{Binding Path=DueDate}"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
 		<!--#endregion-->
@@ -261,9 +271,27 @@
 					</Grid>
 				</Border>
 
-				<StackPanel Grid.Row="4">
-					<TextBlock Text="{Binding Path=SelectedIncome.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-				</StackPanel>
+				<Border Grid.Row="4">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<Button Grid.Column="0" Grid.Row="0"
+								x:Name="AddIncomeButton">Add Income</Button>
+						<Button Grid.Column="1" Grid.Row="0"
+								x:Name="AddExpenseButton">Add Expense</Button>
+						<Button Grid.Column="0" Grid.Row="1"
+								x:Name="DelIncomeButton">Delete Income</Button>
+						<Button Grid.Column="1" Grid.Row="1"
+								x:Name="DelExpenseButton">Delete Expense</Button>
+					</Grid>
+				</Border>
 			</Grid>
 		</Border>
 		<!--#endregion-->
@@ -278,7 +306,21 @@
 		<!--#region Expense DataGrid -->
 		<DataGrid x:Name="ExpenseDataGrid" Grid.Row="1" Grid.Column="5"
 				ItemsSource="{Binding Path=ExpenseDataList}"
-				SelectedItem="{Binding Path=SelectedExpense}"/>
+				SelectedItem="{Binding Path=SelectedExpense}">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Amount" Binding="{Binding Path=Amount, StringFormat=C2}"/>
+				<DataGridTextColumn Header="ID Number" Binding="{Binding Path=IDNumber}"/>
+				<DataGridTextColumn Header="Title" Binding="{Binding Path=Title}"/>
+				<DataGridTextColumn Header="Desc" Binding="{Binding Path=Description}"/>
+				<DataGridTemplateColumn Header="Due Date">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<DatePicker SelectedDate="{Binding Path=DueDate}"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
 		<!--#endregion-->
 	</Grid>
 </UserControl>

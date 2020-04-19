@@ -46,10 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileControl\OpenFileController.cs" />
+    <Compile Include="FileControl\SaveFileController.cs" />
+    <Compile Include="Interfaces\IState.cs" />
+    <Compile Include="StateControl\JsonController.cs" />
+    <Compile Include="StateControl\OpenController.cs" />
     <Compile Include="States\BudgetState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaveControl\SaveController.cs" />
-    <Compile Include="SaveControl\SaveState.cs" />
+    <Compile Include="StateControl\SaveController.cs" />
+    <Compile Include="StateControl\SaveState.cs" />
     <Compile Include="States\DebtState.cs" />
     <Compile Include="States\PaystubState.cs" />
   </ItemGroup>

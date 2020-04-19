@@ -19,6 +19,7 @@
 
 		<Menu>
 			<MenuItem Header="File">
+				<MenuItem x:Name="NewMenu" Header="New"/>
 				<MenuItem x:Name="OpenMenu" Header="Open"/>
 				<MenuItem x:Name="SaveMenu" Header="Save"/>
 				<MenuItem x:Name="SaveAsMenu" Header="Save As"/>
@@ -31,13 +32,13 @@
 		</Menu>
 		
 		<TabControl TabStripPlacement="Top" Grid.Row="1">
-			<TabItem Header="Budget">
+			<TabItem Header="Budget" IsSelected="True">
 				<ContentControl x:Name="BudgetTab_CC"/>
 			</TabItem>
 			<TabItem Header="Paystubs">
 				<ContentControl x:Name="PaystubTab_CC"/>
 			</TabItem>
-			<TabItem Header="Debts" IsSelected="True">
+			<TabItem Header="Debts">
 				<ContentControl x:Name="DebtTab_CC"/>
 			</TabItem>
 		</TabControl>

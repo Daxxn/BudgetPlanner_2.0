@@ -1,6 +1,8 @@
 ﻿using BudgetModels;
 using BudgetModels.Models_V1.DebtModels;
 using BudgetPlanner_UI.Interfaces;
+using StateControl.Interfaces;
+using StateControl.States;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,29 +34,22 @@ namespace BudgetPlanner_UI.ViewModels
 		#region Event Handlers
 		public void AddDebtEvent( object sender, RoutedEventArgs e )
 		{
-			IDebt temp = DebtFactory.BuildDebt();
-			DebtDataList.Add(temp);
-			SelectedDebt = temp;
+			AddDebt();
 		}
 
 		public void DeleteDebtEvent( object sender, RoutedEventArgs e )
 		{
-			DebtDataList.Remove(SelectedDebt);
+			DeleteDebt();
 		}
 
 		public void AddDebtItemEvent( object sender, RoutedEventArgs e )
 		{
-			if (SelectedDebt != null)
-			{
-				IDebtItem temp = DebtFactory.BuildDebtItem();
-				SelectedDebt.DebtHistory.Add(temp);
-				SelectedDebt.SelectedDebtHistory = temp;
-			}
+			AddDebtItem();
 		}
 
 		public void DeleteDebtItemEvent( object sender, RoutedEventArgs e )
 		{
-			SelectedDebt.DebtHistory.Remove(SelectedDebt.SelectedDebtHistory);
+			DeleteDebtItem();
 		}
 
 		public void SelectedMainValueChangedEvent( object sender, RoutedPropertyChangedEventArgs<object> e )
@@ -65,6 +60,55 @@ namespace BudgetPlanner_UI.ViewModels
 			}
 		}
 		#endregion
+
+		public void AddDebt( )
+		{
+			IDebt temp = DebtFactory.BuildDebt();
+			DebtDataList.Add(temp);
+			SelectedDebt = temp;
+
+			AddDebtItem();
+		}
+
+		public void DeleteDebt( )
+		{
+			DebtDataList.Remove(SelectedDebt);
+		}
+
+		public void AddDebtItem( )
+		{
+			if (SelectedDebt != null)
+			{
+				IDebtItem temp = DebtFactory.BuildDebtItem();
+				SelectedDebt.DebtHistory.Add(temp);
+				SelectedDebt.SelectedDebtHistory = temp;
+			}
+		}
+
+		public void DeleteDebtItem( )
+		{
+			SelectedDebt.DebtHistory.Remove(SelectedDebt.SelectedDebtHistory);
+		}
+
+		public override void OpenData( IState data )
+		{
+			var debtData = data as DebtState;
+			DebtDataList = new ObservableCollection<IDebt>( debtData.DebtData);
+		}
+
+		public override void Clear( )
+		{
+			DebtDataList = null;
+			SelectedDebt = null;
+			SelectedDebtHistory = null;
+		}
+
+		public override void New( )
+		{
+			Clear();
+			DebtDataList = new ObservableCollection<IDebt>();
+			AddDebt();
+		}
 		#endregion
 
 		#region - Full Properties

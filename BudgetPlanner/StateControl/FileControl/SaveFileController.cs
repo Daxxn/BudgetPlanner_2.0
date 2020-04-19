@@ -1,35 +1,40 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace StateControl.FileControl
 {
-    public static class OpenFileController
+    public static class SaveFileController
 	{
 		#region - Fields & Properties
 
 		#endregion
 
 		#region - Methods
-		public static string OpenFile(  )
+		public static string SaveDialog( )
 		{
-			OpenFileDialog dialog = new OpenFileDialog()
+			string output = null;
+			SaveFileDialog dialog = new SaveFileDialog
 			{
 				AddExtension = true,
 				DefaultExt = ".bdg",
+				OverwritePrompt = true,
+				InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
 			};
 
 			if (dialog.ShowDialog() == true)
 			{
-				if (!String.IsNullOrEmpty(dialog.FileName))
+				if (dialog.FileName != null)
 				{
-					return dialog.FileName;
+					output = dialog.FileName;
 				}
 			}
-			return null;
+
+			return output;
 		}
 		#endregion
 
